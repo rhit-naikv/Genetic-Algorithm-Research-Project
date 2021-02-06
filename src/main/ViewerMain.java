@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * Viewer class for chromosome editor
@@ -19,17 +21,21 @@ import javax.swing.JPanel;
 public class ViewerMain {
 	private String fileName; //start with 100.txt
 	private Chromosome chromosome;
+	private ChromosomeComponent c;
 	
 	public ViewerMain() throws FileNotFoundException{
-		JFrame frame = new JFrame("100.txt");
+		JFrame frame = new JFrame("20.txt");
 		JPanel buttonPanel = new JPanel();
-		this.fileName = "100.txt";
+		this.fileName = "20.txt";
 		this.chromosome = new Chromosome(this.fileName);
-		ChromosomeComponent c = new ChromosomeComponent(this);
-		c.setPreferredSize(new Dimension(100, 100));
+		c = new ChromosomeComponent(this.chromosome);
+		c.setPreferredSize(new Dimension(300, 300));
 		JButton switchFiles = new JButton("Switch Files");
 		switchFiles.addActionListener(new FileLoader(this.fileName, frame, c, this));
 		JButton mutate = new JButton("Mutate");
+		JTextField mutateText = new JTextField(5);
+		JTextArea rateDisplay = new JTextArea("M Rate: _/N");
+		mutate.addActionListener(new MutateListener(mutateText, c, this));
 		
 		
 		
@@ -38,12 +44,14 @@ public class ViewerMain {
 		
 		buttonPanel.add(switchFiles);
 		buttonPanel.add(mutate);
+		buttonPanel.add(rateDisplay);
+		buttonPanel.add(mutateText);
 		
 		
 		
 		
 		frame.add(buttonPanel, BorderLayout.SOUTH);
-		frame.add(c, BorderLayout.NORTH);
+		frame.add(c, BorderLayout.CENTER);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
@@ -53,6 +61,7 @@ public class ViewerMain {
 	/**
 	 * @param args
 	 * @throws FileNotFoundException 
+	 * 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		new ViewerMain();
@@ -60,6 +69,8 @@ public class ViewerMain {
 	public void setFileName(String newName) throws FileNotFoundException {
 		this.fileName = newName;
 		this.chromosome = new Chromosome(this.fileName);
+		c.setChromosome(this.chromosome);
+		
 	}
 	public Chromosome getChromosome() {
 		return this.chromosome;
