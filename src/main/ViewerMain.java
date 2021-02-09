@@ -19,19 +19,26 @@ import javax.swing.JTextField;
  *
  */
 public class ViewerMain {
-	private String fileName; //start with 100.txt
+	private String fileName; //start with 20.txt
 	private Chromosome chromosome;
 	private ChromosomeComponent c;
 	
 	public ViewerMain() throws FileNotFoundException{
-		JFrame frame = new JFrame("20.txt");
-		JPanel buttonPanel = new JPanel();
 		this.fileName = "20.txt";
-		this.chromosome = new Chromosome(this.fileName);
-		c = new ChromosomeComponent(this.chromosome);
+		this.chromosome = new Chromosome("20.txt");
+		JFrame frame = new JFrame("ChromosomeEditor");
+		JTextArea chromosomeName = new JTextArea("20.txt");
+		JPanel buttonPanel = new JPanel();
+		
+		c = new ChromosomeComponent();
+		c.setChromosome(this.chromosome);
 		c.setPreferredSize(new Dimension(300, 300));
+		
 		JButton selectFile = new JButton("Load");
-		selectFile.addActionListener(new FileListener(this, c, frame));
+		selectFile.addActionListener(new FileLoader(this, c, chromosomeName));
+		
+		JButton saveFile = new JButton("Save");
+		saveFile.addActionListener(new FileSaver(this));
 		
 		JButton mutate = new JButton("Mutate");
 		JTextField mutateText = new JTextField(5);
@@ -39,7 +46,9 @@ public class ViewerMain {
 		mutate.addActionListener(new MutateListener(mutateText, c, this));
 		
 		
+		
 		buttonPanel.add(selectFile);
+		buttonPanel.add(saveFile);
 		buttonPanel.add(mutate);
 		buttonPanel.add(rateDisplay);
 		buttonPanel.add(mutateText);
@@ -47,6 +56,7 @@ public class ViewerMain {
 		
 		
 		
+		frame.add(chromosomeName, BorderLayout.NORTH);
 		frame.add(buttonPanel, BorderLayout.SOUTH);
 		frame.add(c, BorderLayout.CENTER);
 		

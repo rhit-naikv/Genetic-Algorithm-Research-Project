@@ -25,21 +25,24 @@ public class MutateListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.chromosome = main.getChromosome();
-		int mutationRate = Integer.parseInt(mutateText.getText());
-		double probability = (double)mutationRate/(double)this.chromosome.getGenes().size();
-		for (int i = 0; i < this.chromosome.getGenes().size(); i++) {
-			if (Math.random() <= probability) {
-				char flip = '0';
-				if (this.chromosome.getGenes().get(i) == '1') {
-					flip = '0';
+		if (!mutateText.getText().isEmpty()) {
+			int mutationRate = Integer.parseInt(mutateText.getText());
+			double probability = (double)mutationRate/(double)this.chromosome.getGenes().size();
+			for (int i = 0; i < this.chromosome.getGenes().size(); i++) {
+				if (Math.random() <= probability) {
+					char flip = '0';
+					if (this.chromosome.getGenes().get(i) == '1') {
+						flip = '0';
+					}
+					else {
+						flip = '1';
+					}
+					this.chromosome.getGenes().set(i, flip);
 				}
-				else {
-					flip = '1';
-				}
-				this.chromosome.getGenes().set(i, flip);
 			}
+			c.repaint();
+			
 		}
-		c.repaint();
 		
 		
 	}

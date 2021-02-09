@@ -13,8 +13,8 @@ public class ChromosomeComponent extends JComponent {
 	
 	private Chromosome chromosome;
 	
-	public ChromosomeComponent(Chromosome chromosome) {
-		this.chromosome = chromosome;
+	public ChromosomeComponent() {
+		this.chromosome = null;
 	}
 	
 	public void setChromosome(Chromosome chromosome) {
@@ -25,7 +25,9 @@ public class ChromosomeComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		this.chromosome.drawOn(g2);
+		if (this.chromosome != null) {
+			this.chromosome.drawOn(g2);
+		}
 		
 	}
 	
