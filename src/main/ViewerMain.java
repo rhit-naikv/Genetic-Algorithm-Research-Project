@@ -28,6 +28,7 @@ public class ViewerMain {
 	
 	public ViewerMain() throws FileNotFoundException{
 		
+		
 		JFrame frame = new JFrame("ChromosomeEditor");
 		JTextArea chromosomeName = new JTextArea("please load a chromosome to edit");
 		JPanel buttonPanel = new JPanel();
