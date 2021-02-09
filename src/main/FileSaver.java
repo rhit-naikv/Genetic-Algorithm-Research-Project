@@ -2,6 +2,7 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,28 +17,32 @@ public class FileSaver implements ActionListener {
 	
 	public FileSaver(ViewerMain main) {
 		this.main = main;
-		this.chromosome = this.main.getChromosome();
 		this.chooser = new JFileChooser();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		this.chromosome = this.main.getChromosome();
 		// TODO Auto-generated method stub
 		this.chooser.setCurrentDirectory(new File("."));
 		this.chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		int response = this.chooser.showSaveDialog(null);
 		if (response == JFileChooser.APPROVE_OPTION) {
 			try {
-				FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
+				BufferedWriter fw = new BufferedWriter(new FileWriter(chooser.getSelectedFile()+".txt"));
 				for(int i = 0; i < this.chromosome.getGenes().size(); i++) {
 					fw.write(this.chromosome.getGenes().get(i));
+					fw.newLine();
 				}
-				fw.flush();
 				fw.close();
+				
+
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 		}
 		
 	}

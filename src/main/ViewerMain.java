@@ -2,6 +2,9 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -24,14 +27,12 @@ public class ViewerMain {
 	private ChromosomeComponent c;
 	
 	public ViewerMain() throws FileNotFoundException{
-		this.fileName = "20.txt";
-		this.chromosome = new Chromosome("20.txt");
+		
 		JFrame frame = new JFrame("ChromosomeEditor");
-		JTextArea chromosomeName = new JTextArea("20.txt");
+		JTextArea chromosomeName = new JTextArea("please load a chromosome to edit");
 		JPanel buttonPanel = new JPanel();
 		
 		c = new ChromosomeComponent();
-		c.setChromosome(this.chromosome);
 		c.setPreferredSize(new Dimension(300, 300));
 		
 		JButton selectFile = new JButton("Load");
@@ -44,6 +45,53 @@ public class ViewerMain {
 		JTextField mutateText = new JTextField(5);
 		JTextArea rateDisplay = new JTextArea("M Rate: _/N");
 		mutate.addActionListener(new MutateListener(mutateText, c, this));
+		
+		c.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				Chromosome chromosome = getChromosome();
+				for (int i = 0; i < chromosome.getGeneImage().size(); i++) {
+					Rectangle2D.Double geneI = chromosome.getGeneImage().get(i);
+					char gene = chromosome.getGenes().get(i);
+					if (geneI.x < e.getX() && e.getX() < geneI.x + geneI.width && geneI.y < e.getY() && e.getY() < geneI.y + geneI.height) {
+						if (gene == '0') {
+							chromosome.getGenes().set(i, '1');
+						}
+						else {
+							chromosome.getGenes().set(i, '0');
+						}
+					}
+				}
+				c.repaint();
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		
 		
