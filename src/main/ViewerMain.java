@@ -30,8 +30,12 @@ public class ViewerMain {
 		this.chromosome = new Chromosome(this.fileName);
 		c = new ChromosomeComponent(this.chromosome);
 		c.setPreferredSize(new Dimension(300, 300));
+		
 		JButton switchFiles = new JButton("Switch Files");
 		switchFiles.addActionListener(new FileLoader(this.fileName, frame, c, this));
+		JButton selectFile = new JButton("Load");
+		selectFile.addActionListener(new FileListener(this, c, frame));
+		
 		JButton mutate = new JButton("Mutate");
 		JTextField mutateText = new JTextField(5);
 		JTextArea rateDisplay = new JTextArea("M Rate: _/N");
@@ -43,6 +47,7 @@ public class ViewerMain {
 		
 		
 		buttonPanel.add(switchFiles);
+		buttonPanel.add(selectFile);
 		buttonPanel.add(mutate);
 		buttonPanel.add(rateDisplay);
 		buttonPanel.add(mutateText);
