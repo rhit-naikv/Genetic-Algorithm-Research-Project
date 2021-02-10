@@ -34,16 +34,32 @@ public class Chromosome {
 			}
 			Rectangle2D.Double newGene = new Rectangle2D.Double(30*(i%10), j, 30, 30);
 			this.geneImage.add(newGene);
-			
 		}
 		
 	}
+	public Chromosome(ArrayList<Character> genes) {
+		this.genes = genes;
+		for (int i = 0,j=0; i < this.genes.size(); i++) {
+			if (i%10 == 0 && i != 0) {
+				j += 30;
+			}
+			Rectangle2D.Double newGene = new Rectangle2D.Double(30*(i%10), j, 30, 30);
+			this.geneImage.add(newGene);
+		}
+		this.chromosomeFileName = null;
+	}
+	
+	
 	public ArrayList<Character> getGenes() {
 		return this.genes;
 	}
+	
+	
 	public ArrayList<Rectangle2D.Double> getGeneImage() {
 		return this.geneImage;
 	}
+	
+	
 	public void drawOn(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		for (int i = 0,j=0; i < this.genes.size(); i++) {
