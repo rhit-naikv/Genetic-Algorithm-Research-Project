@@ -53,6 +53,46 @@ public class Chromosome implements Comparable<Chromosome> {
 		return counter;
 	}
 
+	public int FitnessMatchValue(Chromosome other) {
+		int counter = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (other.getGenes().get(i) == this.getGenes().get(i)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	public int FitnessSpecialValue(int index, int counter, int maxCounter) {
+		for(int i = index; i < this.genes.size(); i ++) {
+			if(index==genes.size()-1) {
+				if(genes.get(index-1)=='0') {
+					if(genes.get(index)=='1') {
+						return 1;
+					}
+					else return 0;
+				}
+				else if(genes.get(index)=='1') {
+					return 0;
+				}
+				else return 1;
+			}
+			
+			if(counter > maxCounter) {
+				maxCounter = counter;
+			}
+			
+			if(genes.get(i)=='1'&&genes.get(i+1)=='0') {
+					return 1 + FitnessSpecialValue(index+1,counter+1,maxCounter);
+			}
+			else if(genes.get(i+1)=='1') {
+					return 1 + FitnessSpecialValue(index+1, counter+1,maxCounter);
+			}
+			
+		}
+		return FitnessSpecialValue(index+1, 0, maxCounter);
+	}
+
 	public void mutate(int value) {
 		double probability = (double) value / genes.size();
 		for (int i = 0; i < this.genes.size(); i++) {
