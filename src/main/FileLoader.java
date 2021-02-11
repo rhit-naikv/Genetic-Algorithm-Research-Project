@@ -15,7 +15,7 @@ public class FileLoader implements ActionListener {
 	private JFileChooser chooser;
 	private ViewerMain main;
 	private ChromosomeComponent c;
-	
+
 	public FileLoader(ViewerMain main, ChromosomeComponent c, JTextArea chromosomeName) {
 		this.chromosomeName = chromosomeName;
 		this.chooser = new JFileChooser();
@@ -40,7 +40,7 @@ public class FileLoader implements ActionListener {
 			}
 			this.chromosomeName.setText(file.getName());
 		}
-		this.c.repaint();		
+		this.c.repaint();
 	}
 
 }

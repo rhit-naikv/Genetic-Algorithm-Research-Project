@@ -40,7 +40,7 @@ public class Chromosome implements Comparable<Chromosome> {
 	}
 
 	public Chromosome(ArrayList<Character> genes) {
-		this.genes = genes;		
+		this.genes = genes;
 	}
 
 	public int FitnessValue() {
@@ -52,15 +52,15 @@ public class Chromosome implements Comparable<Chromosome> {
 		}
 		return counter;
 	}
-	
+
 	public void mutate(int value) {
-		double probability = (double)value/genes.size();
-		for(int i = 0; i < this.genes.size(); i ++) {
-			if(Math.random()<=probability) {
-				if(genes.get(i)=='1') {
+		double probability = (double) value / genes.size();
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (Math.random() <= probability) {
+				if (genes.get(i) == '1') {
 					genes.set(i, '0');
-				}
-				else genes.set(i, '1');
+				} else
+					genes.set(i, '1');
 			}
 		}
 	}
@@ -91,10 +91,10 @@ public class Chromosome implements Comparable<Chromosome> {
 		}
 
 	}
-	
+
 	@Override
 	public int compareTo(Chromosome other) {
-		return this.FitnessValue()-other.FitnessValue();
-		
+		return this.FitnessValue() - other.FitnessValue();
+
 	}
 }
