@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class Population {
 
-	private ArrayList<Chromosome> chromosomes;
+	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
 
 	public Population() {
 		for (int i = 0; i < 100; i++) {
@@ -39,20 +39,23 @@ public class Population {
 		Collections.sort(this.chromosomes);
 	}
 
-	public void evolutionLoop(int mutationRate, int generations) {
-		for (int j = 0; j < generations; j++) {
-			fitnessSort();
-			int startingSize = this.chromosomes.size();
-			for (int i = 0; i < startingSize / 2; i++) {
-				chromosomes.remove(0);
-			}
-			for (int i = 0; i < startingSize / 2; i++) {
-				Chromosome c = new Chromosome(chromosomes.get(i).getGenes());
-				chromosomes.get(i).mutate(mutationRate);
-				c.mutate(mutationRate);
-				chromosomes.add(c);
-			}
+	public void evolutionLoop(int mutationRate) {
+		fitnessSort();
+		int startingSize = this.chromosomes.size();
+		for (int i = 0; i < startingSize / 2; i++) {
+			chromosomes.remove(0);
 		}
+		startingSize = this.chromosomes.size();
+		for (int i = 0; i < startingSize; i++) {
+			Chromosome c = new Chromosome(chromosomes.get(i).getGenes());
+			chromosomes.get(i).mutate(mutationRate);
+			c.mutate(mutationRate);
+			chromosomes.add(c);
+		}
+	}
+	
+	public ArrayList<Chromosome> getChromosomes() {
+		return this.chromosomes;
 	}
 
 }

@@ -40,13 +40,17 @@ public class Chromosome implements Comparable<Chromosome> {
 	}
 
 	public Chromosome(ArrayList<Character> genes) {
-		this.genes = genes;
+		ArrayList<Character> genes1 = new ArrayList<>();
+		for(int i = 0; i < genes.size(); i ++) {
+			genes1.add(genes.get(i));
+		}
+		this.genes = genes1;
 	}
 
 	public int FitnessValue() {
 		int counter = 0;
 		for (Character gene : genes) {
-			if (gene == 1) {
+			if (gene == '1') {
 				counter++;
 			}
 		}
