@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Chromosome {
-	
+
 	private ArrayList<Character> genes;
 	private ArrayList<Rectangle2D.Double> geneImage;
 	private String chromosomeFileName;
+
 	public Chromosome(String chromosomeFileName) throws FileNotFoundException {
-		
+
 		this.chromosomeFileName = chromosomeFileName;
 		this.genes = new ArrayList<>();
 		this.geneImage = new ArrayList<>();
@@ -28,67 +29,61 @@ public class Chromosome {
 			String line = scanner.nextLine();
 			genes.add(line.charAt(0));
 		}
-		for (int i = 0,j=0; i < this.genes.size(); i++) {
-			if (i%10 == 0 && i != 0) {
+		for (int i = 0, j = 0; i < this.genes.size(); i++) {
+			if (i % 10 == 0 && i != 0) {
 				j += 30;
 			}
-			Rectangle2D.Double newGene = new Rectangle2D.Double(30*(i%10), j, 30, 30);
+			Rectangle2D.Double newGene = new Rectangle2D.Double(30 * (i % 10), j, 30, 30);
 			this.geneImage.add(newGene);
 		}
-		
+
 	}
-	public Chromosome(ArrayList<Character> genes) {
-		this.genes = genes;
-		for (int i = 0,j=0; i < this.genes.size(); i++) {
-			if (i%10 == 0 && i != 0) {
-				j += 30;
+
+	public Chromosome(int numberOfGenes) {
+		ArrayList<Character> newGenes = new ArrayList<>();
+		for (int i = 0; i < numberOfGenes; i++) {
+			if(Math.random()>0.5) {
+				genes.add('1');
 			}
-			Rectangle2D.Double newGene = new Rectangle2D.Double(30*(i%10), j, 30, 30);
-			this.geneImage.add(newGene);
+			else 
+				genes.add('0');
 		}
-		this.chromosomeFileName = null;
 	}
-	
+
 	public int FitnessValue() {
 		int counter = 0;
-		for(Character gene : genes) {
-			if(gene == 1) {
+		for (Character gene : genes) {
+			if (gene == 1) {
 				counter++;
 			}
 		}
 		return counter;
 	}
-	
-	
+
 	public ArrayList<Character> getGenes() {
 		return this.genes;
 	}
-	
-	
+
 	public ArrayList<Rectangle2D.Double> getGeneImage() {
 		return this.geneImage;
 	}
-	
-	
+
 	public void drawOn(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		for (int i = 0,j=0; i < this.genes.size(); i++) {
-			if (i%10 == 0 && i != 0) {
+		for (int i = 0, j = 0; i < this.genes.size(); i++) {
+			if (i % 10 == 0 && i != 0) {
 				j += 30;
 			}
 			if (this.genes.get(i) == '0') {
 				g2.setColor(Color.BLACK);
-			}
-			else {
+			} else {
 				g2.setColor(Color.GREEN);
 			}
-			g2.fillRect(30*(i%10), j, 30, 30);
+			g2.fillRect(30 * (i % 10), j, 30, 30);
 			g2.setColor(Color.YELLOW);
-			g2.drawRect(30*(i%10), j, 30, 30);
-			
+			g2.drawRect(30 * (i % 10), j, 30, 30);
+
 		}
-		
+
 	}
 }
-
-
