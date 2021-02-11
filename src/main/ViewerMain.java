@@ -30,6 +30,7 @@ public class ViewerMain {
 
 		JFrame frame = new JFrame("ChromosomeEditor");
 		JTextArea chromosomeName = new JTextArea("please load a chromosome to edit");
+		chromosomeName.setEditable(false);
 		JPanel buttonPanel = new JPanel();
 
 		c = new ChromosomeComponent();
