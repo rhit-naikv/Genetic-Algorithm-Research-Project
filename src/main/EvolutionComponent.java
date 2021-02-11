@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
+/*
+ * Draws on the weakest, strongest, and average of each generation
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class EvolutionComponent extends JComponent {
 
 	private ArrayList<Integer> weakest = new ArrayList<>();

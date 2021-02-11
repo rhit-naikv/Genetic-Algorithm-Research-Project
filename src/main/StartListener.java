@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+/*
+ * Listener for the start button in EvolutionMain
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class StartListener implements ActionListener {
 	private EvolutionMain main;
 	private EvolutionComponent component;

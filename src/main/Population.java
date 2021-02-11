@@ -3,6 +3,11 @@ package main;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/*
+ * A population of chromosomes that can be sorted based on fitness and create the next generation
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class Population {
 
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();

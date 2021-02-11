@@ -9,6 +9,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Creates and modifies chromosomes, this includes # of genes and mutations
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class Chromosome implements Comparable<Chromosome> {
 
 	private ArrayList<Character> genes;

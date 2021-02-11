@@ -12,6 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/*
+ * Will run and display the generation of evolution
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class EvolutionMain {
 
 	private Population pop;

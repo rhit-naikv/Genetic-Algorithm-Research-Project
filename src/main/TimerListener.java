@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+/*
+ * Listener for the timer, runs per tick
+ * 
+ * @author Vidhu Naik and William Chong
+ */
 public class TimerListener implements ActionListener {
 
 	private EvolutionMain main;
