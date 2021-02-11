@@ -48,6 +48,7 @@ public class Population {
 			}
 			for (int i = 0; i < startingSize / 2; i++) {
 				Chromosome c = new Chromosome(chromosomes.get(i).getGenes());
+				chromosomes.get(i).mutate(mutationRate);
 				c.mutate(mutationRate);
 				chromosomes.add(c);
 			}
