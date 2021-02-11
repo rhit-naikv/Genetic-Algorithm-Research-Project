@@ -24,6 +24,10 @@ public class EvolutionComponent extends JComponent {
 		this.strongest.clear();
 		this.average.clear();
 	}
+	
+	public ArrayList<Integer> getWeakest(){
+		return this.weakest;
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -40,9 +44,9 @@ public class EvolutionComponent extends JComponent {
 					String s = "" + j * 10;
 					g2.drawString(s, 2, 258 - 20 * j);
 				}
-				for (int j = 0; j <= 60; j++) {
-					String s = "" + j * 10;
-					g2.drawString(s, 20 + j * 20, 625);
+				for (int j = 1; j <= 60; j++) {
+					String s = "" + j * 50;
+					g2.drawString(s, 25 + j * 100, 260);
 				}
 				g2.setColor(Color.RED);
 				g2.drawLine(25 + 2 * i, 250 - 2 * this.weakest.get(i), 25 + 2 * i + 1,

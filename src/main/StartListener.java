@@ -3,6 +3,8 @@ package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JTextField;
+
 public class StartListener implements ActionListener {
 	private EvolutionMain main;
 	private EvolutionComponent component;
