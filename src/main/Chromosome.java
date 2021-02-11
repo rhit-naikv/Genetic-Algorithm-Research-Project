@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Chromosome {
+public class Chromosome implements Comparable<Chromosome> {
 
 	private ArrayList<Character> genes;
 	private ArrayList<Rectangle2D.Double> geneImage;
@@ -39,15 +39,8 @@ public class Chromosome {
 
 	}
 
-	public Chromosome(int numberOfGenes) {
-		ArrayList<Character> newGenes = new ArrayList<>();
-		for (int i = 0; i < numberOfGenes; i++) {
-			if(Math.random()>0.5) {
-				genes.add('1');
-			}
-			else 
-				genes.add('0');
-		}
+	public Chromosome(ArrayList<Character> genes) {
+		this.genes = genes;		
 	}
 
 	public int FitnessValue() {
@@ -58,6 +51,18 @@ public class Chromosome {
 			}
 		}
 		return counter;
+	}
+	
+	public void mutate(int value) {
+		double probability = (double)value/genes.size();
+		for(int i = 0; i < this.genes.size(); i ++) {
+			if(Math.random()<=probability) {
+				if(genes.get(i)=='1') {
+					genes.set(i, '0');
+				}
+				else genes.set(i, '1');
+			}
+		}
 	}
 
 	public ArrayList<Character> getGenes() {
@@ -85,5 +90,11 @@ public class Chromosome {
 
 		}
 
+	}
+	
+	@Override
+	public int compareTo(Chromosome other) {
+		return this.FitnessValue()-other.FitnessValue();
+		
 	}
 }
