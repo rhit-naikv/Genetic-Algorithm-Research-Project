@@ -49,6 +49,16 @@ public class Chromosome {
 		this.chromosomeFileName = null;
 	}
 	
+	public int FitnessValue() {
+		int counter = 0;
+		for(Character gene : genes) {
+			if(gene == 1) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
 	
 	public ArrayList<Character> getGenes() {
 		return this.genes;
