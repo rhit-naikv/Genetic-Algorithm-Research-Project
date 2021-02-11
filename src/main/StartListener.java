@@ -3,14 +3,14 @@ package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartListener implements ActionListener{
+public class StartListener implements ActionListener {
 	private EvolutionMain main;
 	private EvolutionComponent component;
-	
+
 	public StartListener(EvolutionMain main, EvolutionComponent component) {
 		this.main = main;
 		this.component = component;
-		
+
 	}
 
 	@Override

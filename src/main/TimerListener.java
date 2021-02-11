@@ -20,12 +20,16 @@ public class TimerListener implements ActionListener {
 		if (this.main.getPop() != null && this.main.getGenerations() > 0) {
 			this.main.getPop().fitnessSort();
 			this.c.addEntry(this.main.getPop().getChromosomes().get(0).FitnessValue(),
-					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(),
-					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2).FitnessValue());
+					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
+							.FitnessValue(),
+					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
+							.FitnessValue());
 			this.main.getPop().evolutionLoop(1);
 			this.c.addEntry(this.main.getPop().getChromosomes().get(0).FitnessValue(),
-					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(),
-					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2).FitnessValue());
+					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
+							.FitnessValue(),
+					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
+							.FitnessValue());
 			this.main.setGenerations(this.main.getGenerations() - 1);
 
 		}

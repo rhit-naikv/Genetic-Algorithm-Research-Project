@@ -35,24 +35,24 @@ public class EvolutionComponent extends JComponent {
 				g2.setColor(Color.BLACK);
 				g2.drawLine(25, 250, 600, 250);
 				g2.drawLine(25, 50, 600, 50);
-				g2.drawLine(25,50,25,600);
-				for(int j = 0; j <= 10; j ++) {
-					String s = "" + j*10;
-					g2.drawString(s, 2, 258-20*j);
+				g2.drawLine(25, 50, 25, 600);
+				for (int j = 0; j <= 10; j++) {
+					String s = "" + j * 10;
+					g2.drawString(s, 2, 258 - 20 * j);
 				}
-				for(int j = 0; j <=60; j++) {
-					String s = "" + j*10;
-					g2.drawString(s, 20+j*20, 625);
+				for (int j = 0; j <= 60; j++) {
+					String s = "" + j * 10;
+					g2.drawString(s, 20 + j * 20, 625);
 				}
 				g2.setColor(Color.RED);
-				g2.drawLine(25+2*i, 250 - 2*this.weakest.get(i), 25+2*i + 1,
-						250 - 2*this.weakest.get(i+1));
+				g2.drawLine(25 + 2 * i, 250 - 2 * this.weakest.get(i), 25 + 2 * i + 1,
+						250 - 2 * this.weakest.get(i + 1));
 				g2.setColor(Color.GREEN);
-				g2.drawLine(25+2*i, 250 - 2*this.strongest.get(i), 25+2*i + 1,
-						250 - 2*this.strongest.get(i+1));
+				g2.drawLine(25 + 2 * i, 250 - 2 * this.strongest.get(i), 25 + 2 * i + 1,
+						250 - 2 * this.strongest.get(i + 1));
 				g2.setColor(Color.BLUE);
-				g2.drawLine(25+2*i, 250 - 2*this.average.get(i), 25+2*i + 1,
-						250 - 2*this.average.get(i+1));
+				g2.drawLine(25 + 2 * i, 250 - 2 * this.average.get(i), 25 + 2 * i + 1,
+						250 - 2 * this.average.get(i + 1));
 
 			}
 		}

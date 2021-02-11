@@ -41,7 +41,7 @@ public class Chromosome implements Comparable<Chromosome> {
 
 	public Chromosome(ArrayList<Character> genes) {
 		ArrayList<Character> genes1 = new ArrayList<>();
-		for(int i = 0; i < genes.size(); i ++) {
+		for (int i = 0; i < genes.size(); i++) {
 			genes1.add(genes.get(i));
 		}
 		this.genes = genes1;

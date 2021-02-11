@@ -53,7 +53,7 @@ public class Population {
 			chromosomes.add(c);
 		}
 	}
-	
+
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
 	}
