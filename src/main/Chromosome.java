@@ -102,3 +102,5 @@ public class Chromosome implements Comparable<Chromosome> {
 
 	}
 }
+
+
