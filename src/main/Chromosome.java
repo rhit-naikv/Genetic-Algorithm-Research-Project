@@ -61,6 +61,33 @@ public class Chromosome implements Comparable<Chromosome> {
 		}
 		return counter;
 	}
+	
+	public int fitnessTarget(Chromosome chromosome) {
+		int counter = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (this.genes.get(i)==chromosome.getGenes().get(i)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	public int fitnessAlternate() {
+		int counter = 0;
+		int max = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (this.genes.get(i)==i%2) {
+				counter++;
+			}
+			else {
+				if (counter > max) {
+					max = counter; 
+				}
+				counter = 0;
+			}
+		}
+		return counter;
+	}
 
 	public void mutate(int value) {
 		double probability = (double) value / genes.size();
