@@ -22,17 +22,21 @@ public class EvolutionMain {
 	private Population pop;
 	private int generations;
 	private boolean pause;
+	private int width;
+	private int height;
+	private EvolutionComponent component;
 
 	public static final int DELAY = 50;
 
 	public EvolutionMain() {
+		this.width = 600;
+		this.height = 300;
 		this.pause = false;
 		JFrame frame = new JFrame("Evolution Viewer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		EvolutionComponent component = new EvolutionComponent();
-		component.setPreferredSize(new Dimension(600, 300));
-		
+		component.setPreferredSize(new Dimension(this.width, this.height));		
 		
 		
 		JTextArea bitStringLength = new JTextArea("Bit String Length: ");
@@ -51,7 +55,7 @@ public class EvolutionMain {
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame));
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
 		panel.add(mutationRate);
@@ -66,6 +70,26 @@ public class EvolutionMain {
 		t.start();
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	public int getHeight() {
+		return this.height;
+	}
+	
+	public int getWidth() {
+		return this.width;
+	}
+	
+	public void setHeight(int value) {
+		this.height = value;
+	}
+	
+	public void setWidth(int value) {
+		this.width = value;
+	}
+	
+	public EvolutionComponent getComponent() {
+		return component;
 	}
 	
 	public boolean getPause() {

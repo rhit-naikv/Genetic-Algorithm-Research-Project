@@ -9,10 +9,12 @@ import java.util.Collections;
  * @author Vidhu Naik and William Chong
  */
 public class Population {
-
+	
+	private int elitismRate;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
 
 	public Population() {
+		this.elitismRate = 0;
 		for (int i = 0; i < 100; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < 100; j++) {
@@ -27,6 +29,7 @@ public class Population {
 	}
 
 	public Population(int numChromosomes, int numGenes) {
+		this.elitismRate = 0;
 		for (int i = 0; i < numChromosomes; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < numGenes; j++) {
@@ -50,12 +53,16 @@ public class Population {
 		for (int i = 0; i < startingSize / 2; i++) {
 			chromosomes.remove(0);
 		}
+		int clones = (elitismRate/2);
 		startingSize = this.chromosomes.size();
-		for (int i = 0; i < startingSize; i++) {
-			Chromosome c = new Chromosome(chromosomes.get(i).getGenes());
-			chromosomes.get(i).mutate(mutationRate);
+		for (int i = 0; i < 2*startingSize - clones; i++) {
+			Chromosome c = new Chromosome(chromosomes.get(i/2).getGenes());
+			chromosomes.get(i/2).mutate(mutationRate);
 			c.mutate(mutationRate);
 			chromosomes.add(c);
+		}
+		for(int i = 0; i < startingSize - clones; i ++) {
+			chromosomes.remove(0);
 		}
 	}
 

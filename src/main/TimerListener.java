@@ -1,8 +1,10 @@
 package main;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /*
@@ -15,18 +17,28 @@ public class TimerListener implements ActionListener {
 	private EvolutionMain main;
 	private EvolutionComponent c;
 	private JTextField mutationRate;
-
-	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate) {
+	private int counter;
+	private JFrame frame;
+	
+	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame) {
+		this.counter = 0;
 		this.main = main;
 		this.c = c;
 		this.mutationRate = mutationRate;
+		this.frame = frame;
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause()==false) {
+			if(counter >= 150) {
+				this.main.setWidth(this.main.getWidth()+2);
+				this.c.setPreferredSize(new Dimension(this.main.getWidth(), this.main.getHeight()));
+				this.frame.pack();
+			}
 			this.main.getPop().fitnessSort();
 			this.c.addEntry(this.main.getPop().getChromosomes().get(0).FitnessValue(),
 					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
@@ -48,6 +60,7 @@ public class TimerListener implements ActionListener {
 			this.main.setGenerations(this.main.getGenerations() - 1);
 
 		}
+		counter++;
 		c.repaint();
 
 	}
