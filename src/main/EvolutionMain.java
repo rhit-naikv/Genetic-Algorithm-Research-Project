@@ -37,7 +37,8 @@ public class EvolutionMain {
 		JPanel panel = new JPanel();
 		EvolutionComponent component = new EvolutionComponent();
 		component.setPreferredSize(new Dimension(this.width, this.height));		
-		
+		frame.setPreferredSize(new Dimension(this.width, this.height+80));	
+		panel.setPreferredSize(new Dimension(this.width, 80));	
 		
 		JTextArea bitStringLength = new JTextArea("Bit String Length: ");
 		bitStringLength.setEditable(false);
@@ -51,11 +52,10 @@ public class EvolutionMain {
 		JTextArea generations = new JTextArea("generations: ");
 		generations.setEditable(false);
 		JTextField userGenerations = new JTextField(5);
-		
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel));
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
 		panel.add(mutationRate);
