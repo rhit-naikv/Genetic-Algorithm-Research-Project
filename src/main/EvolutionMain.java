@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -58,10 +58,13 @@ public class EvolutionMain {
 		JTextArea elitismRate = new JTextArea("Elitism Rate: ");
 		elitismRate.setEditable(false);
 		JTextField userElitismRate = new JTextField(5);
+		String[] selectionChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 1's and 0's"};
+		JTextArea comboBox = new JTextArea("Function: ");
+	    JComboBox<String> cb = new JComboBox<String>(selectionChoices);
 		JButton start = new JButton("Start");
-		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate));
+		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb));
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
 		panel.add(mutationRate);
@@ -74,6 +77,8 @@ public class EvolutionMain {
 		panel.add(userTerminateCondition);
 		panel.add(elitismRate);
 		panel.add(userElitismRate);
+		panel.add(comboBox);
+		panel.add(cb);
 		panel.add(start);
 		frame.add(panel, BorderLayout.SOUTH);
 		frame.add(component, BorderLayout.CENTER);

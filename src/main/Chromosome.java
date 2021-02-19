@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 
  * @author Vidhu Naik and William Chong
  */
-public class Chromosome implements Comparable<Chromosome> {
+public class Chromosome {
 
 	private ArrayList<Character> genes;
 	private ArrayList<Rectangle2D.Double> geneImage;
@@ -53,7 +53,7 @@ public class Chromosome implements Comparable<Chromosome> {
 	}
 	
 	
-	public int FitnessValue() {
+	public int fitnessOnes() {
 		int counter = 0;
 		for (Character gene : genes) {
 			if (gene == '1') {
@@ -91,6 +91,18 @@ public class Chromosome implements Comparable<Chromosome> {
 			}
 		}
 		return counter;
+	}
+	
+	public int FitnessValue(int fitnessSelect) throws FileNotFoundException {
+		if (fitnessSelect == 0) {
+			return fitnessOnes();
+		}
+		else if (fitnessSelect == 1) {
+			return fitnessTarget();
+		}
+		else {
+			return fitnessAlternate();
+		}
 	}
 
 	public void mutate(int value) {
@@ -132,11 +144,7 @@ public class Chromosome implements Comparable<Chromosome> {
 
 	}
 
-	@Override
-	public int compareTo(Chromosome other) {
-		return this.FitnessValue() - other.FitnessValue();
-
-	}
+	
 }
 
 

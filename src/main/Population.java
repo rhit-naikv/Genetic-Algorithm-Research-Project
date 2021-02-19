@@ -1,7 +1,9 @@
 package main;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /*
  * A population of chromosomes that can be sorted based on fitness and create the next generation
@@ -11,10 +13,12 @@ import java.util.Collections;
 public class Population {
 	
 	private int elitismRate;
+	private int fitnessSelect;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
 
 	public Population() {
 		this.elitismRate = 0;
+		this.fitnessSelect = 0;
 		for (int i = 0; i < 100; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < 100; j++) {
@@ -28,8 +32,9 @@ public class Population {
 		}
 	}
 
-	public Population(int numChromosomes, int numGenes, int elitismRate) {
+	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect) {
 		this.elitismRate = elitismRate;
+		this.fitnessSelect = fitnessSelect;
 		for (int i = 0; i < numChromosomes; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < numGenes; j++) {
@@ -44,7 +49,37 @@ public class Population {
 	}
 
 	public void fitnessSort() {
-		Collections.sort(this.chromosomes);
+		Comparator<Chromosome> rankOnes =  new Comparator<Chromosome>() {
+	        public int compare(Chromosome c1, Chromosome c2) {
+	            return c1.fitnessOnes() - c2.fitnessOnes();
+	        }
+	    };
+	    Comparator<Chromosome> rankTarget =  new Comparator<Chromosome>() {
+	        public int compare(Chromosome c1, Chromosome c2) {
+	            try {
+					return c1.fitnessTarget() - c2.fitnessTarget();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return 0;
+	        }
+	    };
+	    Comparator<Chromosome> rankAlternate =  new Comparator<Chromosome>() {
+	        public int compare(Chromosome c1, Chromosome c2) {
+	            return c1.fitnessAlternate() - c2.fitnessAlternate();
+	        }
+	    };
+	    if (this.fitnessSelect == 0) {
+	    	Collections.sort(this.chromosomes, rankOnes);
+	    }
+	    else if (this.fitnessSelect == 1) {
+	    	Collections.sort(this.chromosomes, rankTarget);
+	    }
+	    else {
+	    	Collections.sort(this.chromosomes, rankAlternate);
+	    }
+		
 	}
 
 	public void evolutionLoop(int mutationRate) {

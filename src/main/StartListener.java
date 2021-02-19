@@ -3,6 +3,7 @@ package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /*
@@ -17,27 +18,39 @@ public class StartListener implements ActionListener {
 	private JTextField popSize;
 	private JTextField generations;
 	private JTextField elitismRate;
+	private JComboBox<String> cb;
 
-	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate) {
+	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb) {
 		this.main = main;
 		this.component = component;
 		this.bitStringLength = bitStringLength;
 		this.popSize = popSize;
 		this.generations = generations;
 		this.elitismRate = elitismRate;
+		this.cb = cb;
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		int fitnessSelect = 0;
+		if (this.cb.getSelectedItem().equals("Check for 1's")) {
+			fitnessSelect = 0;
+		}
+		else if (this.cb.getSelectedItem().equals("Check for target Chromosome")) {
+			fitnessSelect = 1;
+		}
+		else {
+			fitnessSelect = 2;
+		}
 		if (this.main.getGenerations() == -1) {
 			this.component.clear();
 		}
 		if (this.component.getWeakest().size()==0) {
 			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty() && !this.elitismRate.getText().isEmpty()) {
 				
-				this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText())));
+				this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect));
 			}
 			else {
 				this.main.setPop(new Population());
