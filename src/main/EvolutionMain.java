@@ -44,7 +44,7 @@ public class EvolutionMain {
 		EvolutionComponent component = new EvolutionComponent();
 		component.setPreferredSize(new Dimension(this.width, this.height));		
 		frame.setPreferredSize(new Dimension(this.width, this.height+80));	
-		panel.setPreferredSize(new Dimension(this.width, 80));
+		panel.setPreferredSize(new Dimension(this.width, 100));
 		
 		ChromosomeComponent c = new ChromosomeComponent();
 		c.setPreferredSize(new Dimension(300, 300));
