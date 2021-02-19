@@ -21,6 +21,7 @@ public class Population {
 	public Population() {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
+		this.crossover = false;
 		for (int i = 0; i < 100; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < 100; j++) {

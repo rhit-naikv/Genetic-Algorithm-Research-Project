@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,28 +49,40 @@ public class EvolutionMain {
 		JTextArea bitStringLength = new JTextArea("Bit String Length: ");
 		bitStringLength.setEditable(false);
 		JTextField userBitStringLength = new JTextField(5);
+		
 		JTextArea mutationRate = new JTextArea("Mutation Rate: ");
 		mutationRate.setEditable(false);
 		JTextField userMutationRate = new JTextField(5);
+		
 		JTextArea popSize = new JTextArea("Population Size: ");
 		popSize.setEditable(false);
 		JTextField userPopSize = new JTextField(5);
+		
 		JTextArea generations = new JTextArea("generations: ");
 		generations.setEditable(false);
 		JTextField userGenerations = new JTextField(5);
+		
 		JTextArea terminateCondition = new JTextArea("Termination Condition: ");
 		terminateCondition.setEditable(false);
 		JTextField userTerminateCondition = new JTextField(5);
+		
 		JTextArea elitismRate = new JTextArea("Elitism Rate: ");
 		elitismRate.setEditable(false);
 		JTextField userElitismRate = new JTextField(5);
+		
 		String[] selectionChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's"};
 		JTextArea comboBox = new JTextArea("Function: ");
 	    JComboBox<String> cb = new JComboBox<String>(selectionChoices);
+	    
+	    JTextArea crossOver = new JTextArea("Crossover? ");
+	    String[] crossOverChoices = {"YES", "NO"};
+	    JComboBox<String> userCrossOver = new JComboBox<String>(crossOverChoices);
+	    
 		JButton start = new JButton("Start");
-		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb));
+		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
 
 		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c));
+		
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
 		panel.add(mutationRate);
@@ -84,6 +97,8 @@ public class EvolutionMain {
 		panel.add(userElitismRate);
 		panel.add(comboBox);
 		panel.add(cb);
+		panel.add(crossOver);
+		panel.add(userCrossOver);
 		panel.add(start);
 		frame.add(panel, BorderLayout.SOUTH);
 		frame.add(component, BorderLayout.CENTER);

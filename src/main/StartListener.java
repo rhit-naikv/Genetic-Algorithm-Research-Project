@@ -3,6 +3,7 @@ package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -19,8 +20,9 @@ public class StartListener implements ActionListener {
 	private JTextField generations;
 	private JTextField elitismRate;
 	private JComboBox<String> cb;
+	private JComboBox<String> crossOver;
 
-	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb) {
+	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
 		this.main = main;
 		this.component = component;
 		this.bitStringLength = bitStringLength;
@@ -28,6 +30,7 @@ public class StartListener implements ActionListener {
 		this.generations = generations;
 		this.elitismRate = elitismRate;
 		this.cb = cb;
+		this.crossOver = crossOver;
 
 	}
 
@@ -49,8 +52,13 @@ public class StartListener implements ActionListener {
 		}
 		if (this.component.getWeakest().size()==0) {
 			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty() && !this.elitismRate.getText().isEmpty()) {
-				
-				this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect));
+				if (this.crossOver.getSelectedItem().equals("YES")) {
+					this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect, true));
+				}
+				else {
+					this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect, false));
+
+				}
 			}
 			else {
 				this.main.setPop(new Population());
