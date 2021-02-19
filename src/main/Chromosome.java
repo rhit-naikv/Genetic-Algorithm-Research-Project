@@ -127,18 +127,15 @@ public class Chromosome {
 
 	public void drawOn(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		for (int i = 0, j = 0; i < this.genes.size(); i++) {
-			if (i % 10 == 0 && i != 0) {
-				j += 30;
-			}
+		for (int i = 0; i < this.genes.size(); i++) {
 			if (this.genes.get(i) == '0') {
 				g2.setColor(Color.BLACK);
 			} else {
 				g2.setColor(Color.GREEN);
 			}
-			g2.fillRect(30 * (i % 10), j, 30, 30);
+			g2.fill(this.geneImage.get(i));
 			g2.setColor(Color.YELLOW);
-			g2.drawRect(30 * (i % 10), j, 30, 30);
+			g2.draw(this.geneImage.get(i));
 
 		}
 
