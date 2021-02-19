@@ -87,19 +87,13 @@ public class Population {
 	public void evolutionLoop(int mutationRate) throws FileNotFoundException {
 		fitnessSort();
 		int startingSize = this.chromosomes.size();
-//		HashMap<Chromosome, Integer> map = new HashMap<Chromosome, Integer>();
-//		ArrayList<Chromosome> copy = new ArrayList<>();
-//		for (int i = 0; i < startingSize; i++) {
-//			map.put(this.chromosomes.get(i), this.chromosomes.get(i).FitnessValue(this.fitnessSelect));
-//			copy.add(this.chromosomes.get(i));
-//		}
-//		for (int i = 0; i < startingSize; i++) {
-//			int random = (int) (Math.random()*100);
-//			int closest = 0;
-//			for (int value : map.values()) {
-//				
-//			}
-//		}
+		int total = 0;
+		for (int i = 0; i < startingSize; i++) {
+			total += this.chromosomes.get(i).FitnessValue(this.fitnessSelect);
+		}
+		int sumProb = 0;
+		for (int i = 0; i < startingSize; i++) {
+		}
 
 		for (int i = 0; i < startingSize / 2; i++) {
 			chromosomes.remove(0);
