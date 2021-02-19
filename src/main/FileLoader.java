@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
- * Loads the file
+ * Loads the file 
  * @author Vidhu Naik and William Chong
  *
  */

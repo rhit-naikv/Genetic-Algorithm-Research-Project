@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 /*
  * Listens to the mutate button
  * 
- * @author Vidhu Naik and William Chong
+ * @author Vidhu Naik and William Chong 
  */
 public class MutateListener implements ActionListener {
 

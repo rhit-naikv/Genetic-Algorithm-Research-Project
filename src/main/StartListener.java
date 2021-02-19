@@ -36,7 +36,7 @@ public class StartListener implements ActionListener {
 	 * @param generations
 	 * @param elitismRate
 	 * @param cb
-	 * @param crossOver
+	 * @param crossOver 
 	 */
 	public StartListener(EvolutionMain main, EvolutionComponent component, JFrame frame, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
 		this.main = main;

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /*
- * Listener for the timer, runs per tick
+ * Listener for the timer, runs per tick 
  * 
  * @author Vidhu Naik and William Chong
  */

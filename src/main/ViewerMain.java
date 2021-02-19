@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 /**
  * Viewer class for chromosome editor
  * 
- * @author Vidhu Naik and William Chong
+ * @author Vidhu Naik and William Chong 
  *
  */
 public class ViewerMain {

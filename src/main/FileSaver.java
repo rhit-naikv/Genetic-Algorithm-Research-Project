@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 
 /**
  * 
- * opens the file saver so that we can save chromosomes
+ * opens the file saver so that we can save chromosomes 
  * @author Vidhu Naik and William Chong
  *
  */

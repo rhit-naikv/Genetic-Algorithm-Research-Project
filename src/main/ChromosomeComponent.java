@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 
 /**
  * 
- * @author Vidhu Naik and William Chong
+ * @author Vidhu Naik and William Chong 
  *
  */
 public class ChromosomeComponent extends JComponent {

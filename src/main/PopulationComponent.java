@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
-
+ 
 public class PopulationComponent extends JComponent {
 	private Population pop;
 	

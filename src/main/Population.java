@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 /*
- * A population of chromosomes that can be sorted based on fitness and create the next generation
+ * A population of chromosomes that can be sorted based on fitness and create the next generation 
  * 
  * @author Vidhu Naik and William Chong
  */

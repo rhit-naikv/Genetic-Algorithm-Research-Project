@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /*
- * Will run and display the generation of evolution
+ * Will run and display the generation of evolution 
  * 
  * @author Vidhu Naik and William Chong
  */
