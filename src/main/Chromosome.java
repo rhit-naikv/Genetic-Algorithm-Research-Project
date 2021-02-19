@@ -174,7 +174,7 @@ public class Chromosome {
 	}
 
 	/**
-	 * draws the chromosome 
+	 * draws the chromosome  
 	 * @param g2
 	 */
 	public void drawOn(Graphics2D g2) {

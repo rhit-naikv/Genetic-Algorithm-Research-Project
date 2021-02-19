@@ -123,7 +123,7 @@ public class TimerListener implements ActionListener {
 						this.main.setGenerations(0);
 					}
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
+					// TODO Auto-generated catch block 
 					e1.printStackTrace();
 				}
 			} else

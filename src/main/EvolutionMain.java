@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  */
 public class EvolutionMain {
 
-	//instance variables
+	//instance variables 
 	private Population pop;
 	private int generations;
 	private boolean pause;

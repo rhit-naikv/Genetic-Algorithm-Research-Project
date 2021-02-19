@@ -52,7 +52,7 @@ public class StartListener implements ActionListener {
 	}
 
 	/**
-	 * the response to the start button being pressed. Contols the beginning of the evolution, pausing, and continuing.
+	 * the response to the start button being pressed. Contols the beginning of the evolution, pausing, and continuing. 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

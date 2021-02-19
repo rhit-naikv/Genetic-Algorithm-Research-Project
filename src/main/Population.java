@@ -113,7 +113,7 @@ public class Population {
 				chromosomes.remove(0);
 			}
 
-		} else {// Truncation code
+		} else {// Truncation code 
 			for (int i = 0; i < startingSize / 2; i++) {
 				chromosomes.remove(0);
 			}
