@@ -74,19 +74,35 @@ public class StartListener implements ActionListener {
 			this.frame.setSize(d);
 		}
 		if (this.component.getWeakest().size()==0) {
-			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty() && !this.elitismRate.getText().isEmpty()) {
-				if (this.crossOver.getSelectedItem().equals("YES")) {
-					this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect, true));
-				}
-				else {
-					this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText()), fitnessSelect, false));
-
-				}
+			int popSizeInt = 0;
+			int bitStringLengthInt = 0;
+			int elitismRateInt = 0;
+			boolean crossover = true;
+			if (!this.popSize.getText().isEmpty()) {
+				popSizeInt = Integer.parseInt(this.popSize.getText());
 			}
 			else {
-				this.main.setPop(new Population());
-
+				popSizeInt = 100;
 			}
+			if (!this.bitStringLength.getText().isEmpty()) {
+				bitStringLengthInt = Integer.parseInt(this.bitStringLength.getText());
+			}
+			else {
+				bitStringLengthInt = 100;
+			}
+			if (!this.elitismRate.getText().isEmpty()) {
+				elitismRateInt = Integer.parseInt(this.elitismRate.getText());
+			}
+			else {
+				elitismRateInt = 0;
+			}
+			if (this.crossOver.getSelectedItem().equals("YES")) {
+				crossover = true;
+			}
+			else {
+				crossover = false;
+			}
+			this.main.setPop(new Population(popSizeInt, bitStringLengthInt, elitismRateInt, fitnessSelect, crossover));
 			if (this.generations.getText().isEmpty()) {
 				this.main.setGenerations(50);
 			}
