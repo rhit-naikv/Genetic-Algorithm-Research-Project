@@ -1,5 +1,10 @@
 package main;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -193,6 +198,15 @@ public class Population {
 
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
+	}
+	
+	public void drawOn(Graphics2D g2) throws FileNotFoundException {
+		fitnessSort();
+		for (int i = 0; i < this.chromosomes.size(); i++) {
+			g2.setColor(Color.GREEN);
+			g2.setStroke(new BasicStroke(5));
+			g2.drawLine(5*i, 100-this.chromosomes.get(i).FitnessValue(this.fitnessSelect), 5*i, 100-this.chromosomes.get(i).FitnessValue(this.fitnessSelect));
+		}
 	}
 
 }

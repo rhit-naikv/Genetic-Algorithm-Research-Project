@@ -83,12 +83,19 @@ public class StartListener implements ActionListener {
 			boolean selectionBoolean = true;
 			if (!this.popSize.getText().isEmpty()) {
 				popSizeInt = Integer.parseInt(this.popSize.getText());
+				if (popSizeInt > 100) {
+					popSizeInt = 100;
+				}
 			}
 			else {
 				popSizeInt = 100;
 			}
 			if (!this.bitStringLength.getText().isEmpty()) {
 				bitStringLengthInt = Integer.parseInt(this.bitStringLength.getText());
+				if (bitStringLengthInt > 100) {
+					bitStringLengthInt = 100;
+				}
+				
 			}
 			else {
 				bitStringLengthInt = 100;

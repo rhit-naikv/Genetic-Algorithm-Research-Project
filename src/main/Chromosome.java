@@ -188,9 +188,7 @@ public class Chromosome {
 			g2.fill(this.geneImage.get(i));
 			g2.setColor(Color.YELLOW);
 			g2.draw(this.geneImage.get(i));
-
 		}
-
 	}
 
 	

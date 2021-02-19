@@ -26,6 +26,7 @@ public class TimerListener implements ActionListener {
 	private JTextField stopValue;
 	private JComboBox<String> cb;
 	private ChromosomeComponent chromosomeC;
+	private PopulationComponent popComponent;
 
 	/**
 	 * constuctor for the timer listener
@@ -39,7 +40,7 @@ public class TimerListener implements ActionListener {
 	 * @param chromosomeC
 	 */
 	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame,
-			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC) {
+			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC, PopulationComponent popComponent) {
 		this.counter = 0;
 		this.main = main;
 		this.c = c;
@@ -48,6 +49,7 @@ public class TimerListener implements ActionListener {
 		this.stopValue = stopValue;
 		this.cb = cb;
 		this.chromosomeC = chromosomeC;
+		this.popComponent = popComponent;
 
 	}
 
@@ -136,8 +138,10 @@ public class TimerListener implements ActionListener {
 					e1.printStackTrace();
 				}
 				this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
+				this.popComponent.setPop(this.main.getPop());
 
 			this.chromosomeC.repaint();
+			this.popComponent.repaint();
 		}
 		c.repaint();
 	}

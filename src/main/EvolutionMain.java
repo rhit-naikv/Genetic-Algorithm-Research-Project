@@ -39,6 +39,7 @@ public class EvolutionMain {
 		this.pause = false;
 		JFrame frame = new JFrame("Evolution Viewer");
 		JFrame fittest = new JFrame("Fittest");
+		JFrame populationPlot = new JFrame("Pop plot");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		EvolutionComponent component = new EvolutionComponent();
@@ -49,6 +50,10 @@ public class EvolutionMain {
 		ChromosomeComponent c = new ChromosomeComponent();
 		c.setPreferredSize(new Dimension(300, 300));
 		fittest.add(c, BorderLayout.CENTER);
+		
+		PopulationComponent popComponent = new PopulationComponent();
+		popComponent.setPreferredSize(new Dimension(500, 100));
+		populationPlot.add(popComponent);
 		
 		JTextArea bitStringLength = new JTextArea("Bit String Length: ");
 		bitStringLength.setEditable(false);
@@ -90,7 +95,7 @@ public class EvolutionMain {
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver, userSelection));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c, popComponent));
 		
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
@@ -118,6 +123,8 @@ public class EvolutionMain {
 		frame.setVisible(true);
 		fittest.pack();
 		fittest.setVisible(true);
+		populationPlot.setVisible(true);
+		populationPlot.pack();
 	}
 	
 	public int getHeight() {
