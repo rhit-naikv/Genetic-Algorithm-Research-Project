@@ -80,7 +80,7 @@ public class Chromosome {
 		int counter = 0;
 		int max = 0;
 		for (int i = 0; i < this.genes.size(); i++) {
-			if (this.genes.get(i)==i%2) {
+			if (this.genes.get(i)=='0') {
 				counter++;
 			}
 			else {
@@ -90,7 +90,7 @@ public class Chromosome {
 				counter = 0;
 			}
 		}
-		return counter;
+		return max;
 	}
 	
 	public int FitnessValue(int fitnessSelect) throws FileNotFoundException {
