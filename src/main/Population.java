@@ -135,7 +135,7 @@ public class Population {
 	
 	public int getIndex(Chromosome c) {
 		for(int i = 0; i < this.chromosomes.size(); i ++) {
-			if(this.chromosomes.get(i)==c) {
+			if(this.chromosomes.get(i).getGenes()==c.getGenes()) {
 				return i;
 			}
 		}
