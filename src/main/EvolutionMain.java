@@ -86,7 +86,7 @@ public class EvolutionMain {
 	    String[] selectionChoices = {"Truncation","Roulette Wheel"};
 	    JComboBox<String> userSelection = new JComboBox<String>(crossOverChoices);
 	    
-	      
+	        
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
 
