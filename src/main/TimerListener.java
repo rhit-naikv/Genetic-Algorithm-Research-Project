@@ -74,9 +74,19 @@ public class TimerListener implements ActionListener {
 			counter++;
 			if (this.mutationRate.getText().isEmpty()) {
 
-				this.main.getPop().evolutionLoop(1);
+				try {
+					this.main.getPop().evolutionLoop(1);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			} else {
-				this.main.getPop().evolutionLoop(Integer.parseInt(this.mutationRate.getText()));
+				try {
+					this.main.getPop().evolutionLoop(Integer.parseInt(this.mutationRate.getText()));
+				} catch (NumberFormatException | FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			try {
 				this.c.addEntry(this.main.getPop().getChromosomes().get(0).FitnessValue(fitnessSelect),
