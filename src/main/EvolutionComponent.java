@@ -59,9 +59,9 @@ public class EvolutionComponent extends JComponent {
 		if (!this.weakest.isEmpty()) {
 			for (int i = 0; i < this.weakest.size() - 1; i++) {
 				g2.setColor(Color.BLACK);
-				g2.drawLine(25, 250, 600, 250);
-				g2.drawLine(25, 50, 600, 50);
-				g2.drawLine(25, 50, 25, 600);
+				g2.drawLine(25, 250, 1000, 250);
+				g2.drawLine(25, 50, 1000, 50);
+				g2.drawLine(25, 50, 25, 500);
 				for (int j = 0; j <= 10; j++) {
 					String s = "" + j * 10;
 					g2.drawString(s, 2, 258 - 20 * j);
