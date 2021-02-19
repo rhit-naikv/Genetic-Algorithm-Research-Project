@@ -120,9 +120,7 @@ public class TimerListener implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			if (this.main.getPop().getChromosomes() != null) {
-				this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
-			}
+			this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
 			this.chromosomeC.repaint();
 		}
 		c.repaint();
