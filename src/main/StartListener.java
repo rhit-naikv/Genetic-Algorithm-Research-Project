@@ -24,6 +24,7 @@ public class StartListener implements ActionListener {
 	private JTextField elitismRate;
 	private JComboBox<String> cb;
 	private JComboBox<String> crossOver;
+	private JComboBox<String> selection;
 	private JFrame frame;
 	
 	/**
@@ -38,7 +39,7 @@ public class StartListener implements ActionListener {
 	 * @param cb
 	 * @param crossOver 
 	 */
-	public StartListener(EvolutionMain main, EvolutionComponent component, JFrame frame, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
+	public StartListener(EvolutionMain main, EvolutionComponent component, JFrame frame, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver, JComboBox<String> selection) {
 		this.main = main;
 		this.component = component;
 		this.frame = frame;
@@ -48,6 +49,7 @@ public class StartListener implements ActionListener {
 		this.elitismRate = elitismRate;
 		this.cb = cb;
 		this.crossOver = crossOver;
+		this.selection = selection;
 
 	}
 
@@ -78,6 +80,7 @@ public class StartListener implements ActionListener {
 			int bitStringLengthInt = 0;
 			int elitismRateInt = 0;
 			boolean crossover = true;
+			boolean selectionBoolean = true;
 			if (!this.popSize.getText().isEmpty()) {
 				popSizeInt = Integer.parseInt(this.popSize.getText());
 			}
@@ -102,7 +105,13 @@ public class StartListener implements ActionListener {
 			else {
 				crossover = false;
 			}
-			this.main.setPop(new Population(popSizeInt, bitStringLengthInt, elitismRateInt, fitnessSelect, crossover));
+			if (this.selection.getSelectedItem().equals("Truncation")) {
+				selectionBoolean = false;
+			}
+			else {
+				selectionBoolean = true;
+			}
+			this.main.setPop(new Population(popSizeInt, bitStringLengthInt, elitismRateInt, fitnessSelect, crossover, selectionBoolean));
 			if (this.generations.getText().isEmpty()) {
 				this.main.setGenerations(50);
 			}

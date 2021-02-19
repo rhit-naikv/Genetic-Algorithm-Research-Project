@@ -82,13 +82,13 @@ public class EvolutionMain {
 	    String[] crossOverChoices = {"YES", "NO"};
 	    JComboBox<String> userCrossOver = new JComboBox<String>(crossOverChoices);
 	    
-	    JTextArea selection = new JTextArea("Crossover? ");
+	    JTextArea selection = new JTextArea("Selection: ");
 	    String[] selectionChoices = {"Truncation","Roulette Wheel"};
-	    JComboBox<String> userSelection = new JComboBox<String>(crossOverChoices);
+	    JComboBox<String> userSelection = new JComboBox<String>(selectionChoices);
 	    
 	        
 		JButton start = new JButton("Start");
-		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
+		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver, userSelection));
 
 		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c));
 		
@@ -108,6 +108,8 @@ public class EvolutionMain {
 		panel.add(cb);
 		panel.add(crossOver);
 		panel.add(userCrossOver);
+		panel.add(selection);
+		panel.add(userSelection);
 		panel.add(start);
 		frame.add(panel, BorderLayout.SOUTH);
 		frame.add(component, BorderLayout.CENTER);

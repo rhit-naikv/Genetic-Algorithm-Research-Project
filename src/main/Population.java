@@ -36,8 +36,8 @@ public class Population {
 		}
 	}
 
-	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover) {
-		this.roulette = false;
+	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover, boolean roulette) {
+		this.roulette = roulette;
 		this.elitismRate = elitismRate;
 		this.fitnessSelect = fitnessSelect;
 		this.crossover = crossover;
