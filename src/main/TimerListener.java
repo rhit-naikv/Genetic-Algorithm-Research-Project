@@ -24,9 +24,10 @@ public class TimerListener implements ActionListener {
 	private JFrame frame;
 	private JTextField stopValue;
 	private JComboBox<String> cb;
+	private ChromosomeComponent chromosomeC;
 
 	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame,
-			JPanel panel, JTextField stopValue, JComboBox<String> cb) {
+			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC) {
 		this.counter = 0;
 		this.main = main;
 		this.c = c;
@@ -34,12 +35,14 @@ public class TimerListener implements ActionListener {
 		this.frame = frame;
 		this.stopValue = stopValue;
 		this.cb = cb;
+		this.chromosomeC = chromosomeC;
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		int fitnessSelect = 0;
 		if (this.cb.getSelectedItem().equals("Check for 1's")) {
 			fitnessSelect = 0;
@@ -117,6 +120,8 @@ public class TimerListener implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
+			this.chromosomeC.repaint();
 		}
 		c.repaint();
 	}
