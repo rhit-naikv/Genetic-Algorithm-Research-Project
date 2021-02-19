@@ -23,7 +23,7 @@ public class Population {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
 		this.crossover = false;
-		this.roulette = true;
+		this.roulette = false;
 		for (int i = 0; i < 100; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < 100; j++) {
@@ -38,7 +38,7 @@ public class Population {
 	}
 
 	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover) {
-		this.roulette = true;
+		this.roulette = false;
 		this.elitismRate = elitismRate;
 		this.fitnessSelect = fitnessSelect;
 		this.crossover = crossover;
