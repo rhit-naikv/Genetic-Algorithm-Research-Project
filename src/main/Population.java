@@ -18,7 +18,6 @@ public class Population {
 	private boolean crossover;
 	private boolean roulette;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
-
 	public Population() {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
