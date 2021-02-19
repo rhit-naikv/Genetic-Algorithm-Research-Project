@@ -46,10 +46,18 @@ public class Chromosome {
 
 	public Chromosome(ArrayList<Character> genes) {
 		ArrayList<Character> genes1 = new ArrayList<>();
+		this.geneImage = new ArrayList<>();
 		for (int i = 0; i < genes.size(); i++) {
 			genes1.add(genes.get(i));
 		}
 		this.genes = genes1;
+		for (int i = 0, j = 0; i < this.genes.size(); i++) {
+			if (i % 10 == 0 && i != 0) {
+				j += 30;
+			}
+			Rectangle2D.Double newGene = new Rectangle2D.Double(30 * (i % 10), j, 30, 30);
+			this.geneImage.add(newGene);
+		}
 	}
 	
 	
