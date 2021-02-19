@@ -121,6 +121,7 @@ public class TimerListener implements ActionListener {
 					e1.printStackTrace();
 				}
 				this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
+
 			this.chromosomeC.repaint();
 		}
 		c.repaint();
