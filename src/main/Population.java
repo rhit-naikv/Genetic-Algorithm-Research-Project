@@ -18,7 +18,6 @@ public class Population {
 	private boolean crossover;
 	private boolean roulette;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
-
 	public Population() {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
@@ -91,22 +90,26 @@ public class Population {
 		fitnessSort();
 		int startingSize = this.chromosomes.size();
 		Chromosome c;
-
+		HashMap<Chromosome, Integer> indexes = new HashMap<>();
 		if (roulette) { // Roulette code
 			int clones = (elitismRate * startingSize) / 100;
 			for (int i = 0; i < startingSize - clones; i++) {
-				
 				if (crossover) {
-					int chromosome1 = getIndex(rouletteResult(startingSize));
-					int chromosome2 = getIndex(rouletteResult(startingSize));
+					int chromosome1 = rouletteResult(startingSize);
+					int chromosome2 = rouletteResult(startingSize);
 					c = crossoverResult(chromosome1, chromosome2);
 				} else {
-					c = rouletteResult(startingSize);
+					c = new Chromosome(chromosomes.get(rouletteResult(startingSize)).getGenes());
 				}
 				c.mutate(mutationRate);
 				chromosomes.add(c);
 			}
-			for (int i = 0; i < startingSize - clones; i++) {
+			for(int i = 0; i < clones; i ++) {
+				c = new Chromosome(chromosomes.get(99-i).getGenes());
+				c.mutate(mutationRate);
+				chromosomes.add(c);
+			}
+			for (int i = 0; i < startingSize; i++) {
 				chromosomes.remove(0);
 			}
 
@@ -134,17 +137,7 @@ public class Population {
 		}
 	}
 
-	
-	public int getIndex(Chromosome c) {
-		for(int i = 0; i < this.chromosomes.size(); i ++) {
-			if(this.chromosomes.get(i).getGenes()==c.getGenes()) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	public Chromosome rouletteResult(int startingSize) {
-		Chromosome c;
+	public int rouletteResult(int startingSize) {
 		double total = 0;
 		int sumProb = 0;
 		HashMap<Chromosome, Double> probabilities = new HashMap<>();
@@ -173,14 +166,14 @@ public class Population {
 		for (int i = 0; i < startingSize; i++) {
 			if (i == 0) {
 				if (probabilities.get(chromosomes.get(0)) > finalValue) {
-					return c = new Chromosome(chromosomes.get(0).getGenes());
+					return 0;
 				}
 			} else if (probabilities.get(chromosomes.get(i - 1)) < finalValue
 					&& probabilities.get(chromosomes.get(i)) > finalValue) {
-				return c = new Chromosome(chromosomes.get(i).getGenes());
+				return i;
 			}
 		}
-		return c = new Chromosome(chromosomes.get(startingSize - 1).getGenes());
+		return startingSize-1;
 	}
 
 	public Chromosome crossoverResult(int chromosome1, int chromosome2) {
