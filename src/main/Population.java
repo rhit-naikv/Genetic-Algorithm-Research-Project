@@ -105,18 +105,30 @@ public class Population {
 		}
 		int clones = (elitismRate / 2);
 		startingSize = this.chromosomes.size();
-		if (crossover) {
 
-		} else {
-			for (int i = 0; i < 2 * startingSize - clones; i++) {
-				Chromosome c = new Chromosome(chromosomes.get(i / 2).getGenes());
-				chromosomes.get(i / 2).mutate(mutationRate);
-				c.mutate(mutationRate);
-				chromosomes.add(c);
+		for (int i = 0; i < 2 * startingSize - clones; i++) {
+			Chromosome c;
+			if(crossover) {
+				ArrayList <Character> newGenes = new ArrayList<>();
+				int crosspoint = (int)(chromosomes.get(0).getGenes().size()*Math.random());
+				int chromosome1 = (int)(chromosomes.size()*Math.random());
+				int chromosome2 = (int)(chromosomes.size()*Math.random());
+				for(int j = 0; j < crosspoint; j ++) {
+					newGenes.add(chromosomes.get(chromosome1).getGenes().get(j));
+				}
+				for(int j = crosspoint; j < chromosomes.get(0).getGenes().size(); j ++) {
+					newGenes.add(chromosomes.get(chromosome2).getGenes().get(j));
+				}
+				c = new Chromosome(newGenes);
 			}
-			for (int i = 0; i < startingSize - clones; i++) {
-				chromosomes.remove(0);
+			else{
+				c = new Chromosome(chromosomes.get(i / 2).getGenes());
 			}
+			c.mutate(mutationRate);
+			chromosomes.add(c);
+		}
+		for (int i = 0; i < startingSize - clones; i++) {
+			chromosomes.remove(0);
 		}
 	}
 
