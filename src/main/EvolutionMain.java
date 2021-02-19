@@ -74,13 +74,18 @@ public class EvolutionMain {
 		elitismRate.setEditable(false);
 		JTextField userElitismRate = new JTextField(5);
 		
-		String[] selectionChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's"};
+		String[] fitnessChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's"};
 		JTextArea comboBox = new JTextArea("Function: ");
-	    JComboBox<String> cb = new JComboBox<String>(selectionChoices);
+	    JComboBox<String> cb = new JComboBox<String>(fitnessChoices);
 	    
 	    JTextArea crossOver = new JTextArea("Crossover? ");
 	    String[] crossOverChoices = {"YES", "NO"};
 	    JComboBox<String> userCrossOver = new JComboBox<String>(crossOverChoices);
+	    
+	    JTextArea selection = new JTextArea("Crossover? ");
+	    String[] selectionChoices = {"Truncation","Roulette Wheel"};
+	    JComboBox<String> userSelection = new JComboBox<String>(crossOverChoices);
+	    
 	    
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
