@@ -21,7 +21,7 @@ public class PopulationComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		if (this.pop != null) {
-			
+			this.pop.drawOn(g2);
 		}
 
 	}

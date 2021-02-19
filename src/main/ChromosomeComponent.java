@@ -9,18 +9,34 @@ import java.util.HashMap;
 
 import javax.swing.JComponent;
 
+/**
+ * 
+ * @author Vidhu Naik and William Chong
+ *
+ */
 public class ChromosomeComponent extends JComponent {
 
+	//chromosome instance variable
 	private Chromosome chromosome;
 
+	/**
+	 * constructs the component
+	 */
 	public ChromosomeComponent() {
 		this.chromosome = null;
 	}
 
+	/**
+	 * sets the chromosome for the component
+	 * @param chromosome
+	 */
 	public void setChromosome(Chromosome chromosome) {
 		this.chromosome = chromosome;
 	}
 
+	/**
+	 * paints the chromosome
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

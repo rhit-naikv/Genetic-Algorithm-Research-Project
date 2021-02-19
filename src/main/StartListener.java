@@ -15,6 +15,7 @@ import javax.swing.JTextField;
  * @author Vidhu Naik and William Chong
  */
 public class StartListener implements ActionListener {
+	//instance variables
 	private EvolutionMain main;
 	private EvolutionComponent component;
 	private JTextField bitStringLength;
@@ -25,6 +26,18 @@ public class StartListener implements ActionListener {
 	private JComboBox<String> crossOver;
 	private JFrame frame;
 	
+	/**
+	 * constructor for the start listener
+	 * @param main
+	 * @param component
+	 * @param frame
+	 * @param bitStringLength
+	 * @param popSize
+	 * @param generations
+	 * @param elitismRate
+	 * @param cb
+	 * @param crossOver
+	 */
 	public StartListener(EvolutionMain main, EvolutionComponent component, JFrame frame, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
 		this.main = main;
 		this.component = component;
@@ -38,6 +51,9 @@ public class StartListener implements ActionListener {
 
 	}
 
+	/**
+	 * the response to the start button being pressed. Contols the beginning of the evolution, pausing, and continuing.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

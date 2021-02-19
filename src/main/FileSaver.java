@@ -9,17 +9,31 @@ import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
+/**
+ * 
+ * opens the file saver so that we can save chromosomes
+ * @author Vidhu Naik and William Chong
+ *
+ */
 public class FileSaver implements ActionListener {
 
+	//instance variables
 	private Chromosome chromosome;
 	private ViewerMain main;
 	private JFileChooser chooser;
 
+	/**
+	 * constructs the filesaver
+	 * @param main
+	 */
 	public FileSaver(ViewerMain main) {
 		this.main = main;
 		this.chooser = new JFileChooser();
 	}
 
+	/**
+	 * responds to when the save button is pushed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.chromosome = this.main.getChromosome();

@@ -12,11 +12,13 @@ import javax.swing.JTextField;
  */
 public class MutateListener implements ActionListener {
 
+	//instance variables
 	private Chromosome chromosome;
 	private JTextField mutateText;
 	private ChromosomeComponent c;
 	private ViewerMain main;
 
+	//constructs the mutate listener
 	public MutateListener(JTextField mutateText, ChromosomeComponent c, ViewerMain main) {
 		this.main = main;
 		this.chromosome = null;
@@ -25,7 +27,10 @@ public class MutateListener implements ActionListener {
 		this.c = c;
 
 	}
-
+	
+	/**
+	 * responds to the mutate button being pushed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

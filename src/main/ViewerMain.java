@@ -26,8 +26,13 @@ public class ViewerMain {
 	private Chromosome chromosome;
 	private ChromosomeComponent c;
 
+	/**
+	 * constructor for ChromosomeEditor
+	 * @throws FileNotFoundException
+	 */
 	public ViewerMain() throws FileNotFoundException {
 
+		//set up stuff for gui
 		JFrame frame = new JFrame("ChromosomeEditor");
 		JTextArea chromosomeName = new JTextArea("please load a chromosome to edit");
 		chromosomeName.setEditable(false);
@@ -45,6 +50,8 @@ public class ViewerMain {
 		JButton mutate = new JButton("Mutate");
 		JTextField mutateText = new JTextField(5);
 		JTextArea rateDisplay = new JTextArea("M Rate: _/N");
+		
+		//start adding event listeners
 		mutate.addActionListener(new MutateListener(mutateText, c, this));
 
 		c.addMouseListener(new MouseListener() {
@@ -94,6 +101,7 @@ public class ViewerMain {
 
 		});
 
+		//add all buttons to the panel and add panel to the frame
 		buttonPanel.add(selectFile);
 		buttonPanel.add(saveFile);
 		buttonPanel.add(mutate);
@@ -110,6 +118,7 @@ public class ViewerMain {
 	}
 
 	/**
+	 * main method
 	 * @param args
 	 * @throws FileNotFoundException
 	 * 
@@ -118,6 +127,11 @@ public class ViewerMain {
 		new ViewerMain();
 	}
 
+	/**
+	 * sets the file name of the chromosome being displayed/edited
+	 * @param newName
+	 * @throws FileNotFoundException
+	 */
 	public void setFileName(String newName) throws FileNotFoundException {
 		this.fileName = newName;
 		this.chromosome = new Chromosome(this.fileName);
@@ -125,10 +139,18 @@ public class ViewerMain {
 
 	}
 
+	/**
+	 * gets the chromosome
+	 * @return
+	 */
 	public Chromosome getChromosome() {
 		return this.chromosome;
 	}
 
+	/**
+	 * gets the chromosome's file name
+	 * @return
+	 */
 	public String getFileName() {
 		return this.fileName;
 	}

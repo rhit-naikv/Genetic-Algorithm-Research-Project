@@ -16,10 +16,16 @@ import java.util.Scanner;
  */
 public class Chromosome {
 
+	//instance variables holding the genes, image of the genes, and the chromosome file name
 	private ArrayList<Character> genes;
 	private ArrayList<Rectangle2D.Double> geneImage;
 	private String chromosomeFileName;
 
+	/**
+	 * constructs the chromosome when given a file name
+	 * @param chromosomeFileName
+	 * @throws FileNotFoundException
+	 */
 	public Chromosome(String chromosomeFileName) throws FileNotFoundException {
 
 		this.chromosomeFileName = chromosomeFileName;
@@ -44,6 +50,10 @@ public class Chromosome {
 
 	}
 
+	/**
+	 * constucts the chromosome when given what genes we want
+	 * @param genes
+	 */
 	public Chromosome(ArrayList<Character> genes) {
 		ArrayList<Character> genes1 = new ArrayList<>();
 		this.geneImage = new ArrayList<>();
@@ -61,6 +71,10 @@ public class Chromosome {
 	}
 	
 	
+	/**
+	 * determines how fit a chromosome is based on the number of 1's
+	 * @return
+	 */
 	public int fitnessOnes() {
 		int counter = 0;
 		for (Character gene : genes) {
@@ -72,7 +86,11 @@ public class Chromosome {
 	}
 
 	
-	
+	/**
+	 * determines how fit a chromosome is based on it's accuracy to a target chromosome
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public int fitnessTarget() throws FileNotFoundException {
 		Chromosome chromosome = new Chromosome("creeperawman.txt");
 		int counter = 0;
@@ -84,6 +102,10 @@ public class Chromosome {
 		return counter;
 	}
 	
+	/**
+	 * determines how fit a chromosome is based on the number of consecutive 0's
+	 * @return
+	 */
 	public int fitnessAlternate() {
 		int counter = 0;
 		int max = 0;
@@ -101,6 +123,12 @@ public class Chromosome {
 		return max;
 	}
 	
+	/**
+	 * returns the fitness value of the chromosome based on what fitness function the user wants to use.
+	 * @param fitnessSelect
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public int FitnessValue(int fitnessSelect) throws FileNotFoundException {
 		if (fitnessSelect == 0) {
 			return fitnessOnes();
@@ -113,6 +141,10 @@ public class Chromosome {
 		}
 	}
 
+	/**
+	 * mutates the chromosome
+	 * @param value
+	 */
 	public void mutate(int value) {
 		double probability = (double) value / genes.size();
 		for (int i = 0; i < this.genes.size(); i++) {
@@ -125,14 +157,26 @@ public class Chromosome {
 		}
 	}
 
+	/**
+	 * gets the genes of the chromosome
+	 * @return
+	 */
 	public ArrayList<Character> getGenes() {
 		return this.genes;
 	}
 
+	/**
+	 * gets the gene image of the chromosome (the square sizes)
+	 * @return
+	 */
 	public ArrayList<Rectangle2D.Double> getGeneImage() {
 		return this.geneImage;
 	}
 
+	/**
+	 * draws the chromosome
+	 * @param g2
+	 */
 	public void drawOn(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < this.genes.size(); i++) {

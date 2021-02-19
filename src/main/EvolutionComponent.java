@@ -14,26 +14,43 @@ import javax.swing.JComponent;
  */
 public class EvolutionComponent extends JComponent {
 
+	//define arraylists for certain chromosomes
 	private ArrayList<Integer> weakest = new ArrayList<>();
 	private ArrayList<Integer> strongest = new ArrayList<>();
 	private ArrayList<Integer> average = new ArrayList<>();
 
+	/**
+	 * adds an entry to the arrayLists
+	 * @param weakest
+	 * @param strongest
+	 * @param average
+	 */
 	public void addEntry(int weakest, int strongest, int average) {
 		this.weakest.add(weakest);
 		this.strongest.add(strongest);
 		this.average.add(average);
 	}
 
+	/**
+	 * clears the array lists
+	 */
 	public void clear() {
 		this.weakest.clear();
 		this.strongest.clear();
 		this.average.clear();
 	}
 	
+	/**
+	 * gets the list of historically weak chromosomes
+	 * @return
+	 */
 	public ArrayList<Integer> getWeakest(){
 		return this.weakest;
 	}
 
+	/**
+	 * displays the strongest, weakest, and average chromosome over time
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

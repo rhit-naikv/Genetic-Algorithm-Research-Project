@@ -20,6 +20,7 @@ import javax.swing.JTextField;
  */
 public class EvolutionMain {
 
+	//instance variables
 	private Population pop;
 	private int generations;
 	private boolean pause;
@@ -29,6 +30,9 @@ public class EvolutionMain {
 
 	public static final int DELAY = 50;
 
+	/**
+	 * constucts the evolution main
+	 */
 	public EvolutionMain() {
 		this.width = 600;
 		this.height = 300;

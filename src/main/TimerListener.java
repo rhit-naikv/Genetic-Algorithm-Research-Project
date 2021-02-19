@@ -17,6 +17,7 @@ import javax.swing.JTextField;
  */
 public class TimerListener implements ActionListener {
 
+	// declare all instance variables
 	private EvolutionMain main;
 	private EvolutionComponent c;
 	private JTextField mutationRate;
@@ -26,6 +27,17 @@ public class TimerListener implements ActionListener {
 	private JComboBox<String> cb;
 	private ChromosomeComponent chromosomeC;
 
+	/**
+	 * constuctor for the timer listener
+	 * @param main
+	 * @param c
+	 * @param mutationRate
+	 * @param frame
+	 * @param panel
+	 * @param stopValue
+	 * @param cb
+	 * @param chromosomeC
+	 */
 	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame,
 			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC) {
 		this.counter = 0;
@@ -39,6 +51,9 @@ public class TimerListener implements ActionListener {
 
 	}
 
+	/**
+	 * response to event. Keeps track of the progress of the evolution
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
