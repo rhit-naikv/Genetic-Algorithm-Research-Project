@@ -74,7 +74,7 @@ public class TimerListener implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			counter++;
+			counter+=2;
 			if (this.mutationRate.getText().isEmpty()) {
 
 				try {

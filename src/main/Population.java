@@ -12,9 +12,10 @@ import java.util.HashMap;
  * @author Vidhu Naik and William Chong
  */
 public class Population {
-	
+
 	private int elitismRate;
 	private int fitnessSelect;
+	private boolean crossover;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
 
 	public Population() {
@@ -33,9 +34,10 @@ public class Population {
 		}
 	}
 
-	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect) {
+	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover) {
 		this.elitismRate = elitismRate;
 		this.fitnessSelect = fitnessSelect;
+		this.crossover = crossover;
 		for (int i = 0; i < numChromosomes; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < numGenes; j++) {
@@ -50,37 +52,35 @@ public class Population {
 	}
 
 	public void fitnessSort() {
-		Comparator<Chromosome> rankOnes =  new Comparator<Chromosome>() {
-	        public int compare(Chromosome c1, Chromosome c2) {
-	            return c1.fitnessOnes() - c2.fitnessOnes();
-	        }
-	    };
-	    Comparator<Chromosome> rankTarget =  new Comparator<Chromosome>() {
-	        public int compare(Chromosome c1, Chromosome c2) {
-	            try {
+		Comparator<Chromosome> rankOnes = new Comparator<Chromosome>() {
+			public int compare(Chromosome c1, Chromosome c2) {
+				return c1.fitnessOnes() - c2.fitnessOnes();
+			}
+		};
+		Comparator<Chromosome> rankTarget = new Comparator<Chromosome>() {
+			public int compare(Chromosome c1, Chromosome c2) {
+				try {
 					return c1.fitnessTarget() - c2.fitnessTarget();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return 0;
-	        }
-	    };
-	    Comparator<Chromosome> rankAlternate =  new Comparator<Chromosome>() {
-	        public int compare(Chromosome c1, Chromosome c2) {
-	            return c1.fitnessAlternate() - c2.fitnessAlternate();
-	        }
-	    };
-	    if (this.fitnessSelect == 0) {
-	    	Collections.sort(this.chromosomes, rankOnes);
-	    }
-	    else if (this.fitnessSelect == 1) {
-	    	Collections.sort(this.chromosomes, rankTarget);
-	    }
-	    else {
-	    	Collections.sort(this.chromosomes, rankAlternate);
-	    }
-		
+			}
+		};
+		Comparator<Chromosome> rankAlternate = new Comparator<Chromosome>() {
+			public int compare(Chromosome c1, Chromosome c2) {
+				return c1.fitnessAlternate() - c2.fitnessAlternate();
+			}
+		};
+		if (this.fitnessSelect == 0) {
+			Collections.sort(this.chromosomes, rankOnes);
+		} else if (this.fitnessSelect == 1) {
+			Collections.sort(this.chromosomes, rankTarget);
+		} else {
+			Collections.sort(this.chromosomes, rankAlternate);
+		}
+
 	}
 
 	public void evolutionLoop(int mutationRate) throws FileNotFoundException {
@@ -99,21 +99,24 @@ public class Population {
 //				
 //			}
 //		}
-		
-		
+
 		for (int i = 0; i < startingSize / 2; i++) {
 			chromosomes.remove(0);
 		}
-		int clones = (elitismRate/2);
+		int clones = (elitismRate / 2);
 		startingSize = this.chromosomes.size();
-		for (int i = 0; i < 2*startingSize - clones; i++) {
-			Chromosome c = new Chromosome(chromosomes.get(i/2).getGenes());
-			chromosomes.get(i/2).mutate(mutationRate);
-			c.mutate(mutationRate);
-			chromosomes.add(c);
-		}
-		for(int i = 0; i < startingSize - clones; i ++) {
-			chromosomes.remove(0);
+		if (crossover) {
+
+		} else {
+			for (int i = 0; i < 2 * startingSize - clones; i++) {
+				Chromosome c = new Chromosome(chromosomes.get(i / 2).getGenes());
+				chromosomes.get(i / 2).mutate(mutationRate);
+				c.mutate(mutationRate);
+				chromosomes.add(c);
+			}
+			for (int i = 0; i < startingSize - clones; i++) {
+				chromosomes.remove(0);
+			}
 		}
 	}
 
@@ -122,6 +125,3 @@ public class Population {
 	}
 
 }
-
-
-
