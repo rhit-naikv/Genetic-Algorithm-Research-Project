@@ -1,10 +1,12 @@
 package main;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /*
@@ -21,10 +23,12 @@ public class StartListener implements ActionListener {
 	private JTextField elitismRate;
 	private JComboBox<String> cb;
 	private JComboBox<String> crossOver;
-
-	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
+	private JFrame frame;
+	
+	public StartListener(EvolutionMain main, EvolutionComponent component, JFrame frame, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate, JComboBox<String> cb, JComboBox<String> crossOver) {
 		this.main = main;
 		this.component = component;
+		this.frame = frame;
 		this.bitStringLength = bitStringLength;
 		this.popSize = popSize;
 		this.generations = generations;
@@ -49,6 +53,9 @@ public class StartListener implements ActionListener {
 		}
 		if (this.main.getGenerations() == -1) {
 			this.component.clear();
+			this.main.setWidth(600);
+			Dimension d = new Dimension(this.main.getWidth(), 450);
+			this.frame.setSize(d);
 		}
 		if (this.component.getWeakest().size()==0) {
 			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty() && !this.elitismRate.getText().isEmpty()) {

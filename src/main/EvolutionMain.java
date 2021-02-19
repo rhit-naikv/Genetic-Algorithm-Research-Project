@@ -79,7 +79,7 @@ public class EvolutionMain {
 	    JComboBox<String> userCrossOver = new JComboBox<String>(crossOverChoices);
 	    
 		JButton start = new JButton("Start");
-		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
+		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver));
 
 		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c));
 		

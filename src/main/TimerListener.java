@@ -54,12 +54,12 @@ public class TimerListener implements ActionListener {
 			fitnessSelect = 2;
 		}
 		
-
+		if(this.main.getGenerations() == 0) {
+			this.counter = 0;
+		}
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause() == false) {
 			if (counter >= 250) {
 				this.main.setWidth(this.main.getWidth() + 4);
-				frame.setPreferredSize(new Dimension(this.main.getWidth(), this.main.getHeight() + 80));
-				c.setPreferredSize(new Dimension(this.main.getWidth(), this.main.getHeight()));
 				Dimension d = new Dimension(this.main.getWidth(), 450);
 				this.frame.setSize(d);
 			}
@@ -120,9 +120,7 @@ public class TimerListener implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			if (this.main.getPop().getChromosomes() != null) {
 				this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
-			}
 			this.chromosomeC.repaint();
 		}
 		c.repaint();
