@@ -52,10 +52,16 @@ public class EvolutionMain {
 		JTextArea generations = new JTextArea("generations: ");
 		generations.setEditable(false);
 		JTextField userGenerations = new JTextField(5);
+		JTextArea terminateCondition = new JTextArea("Termination Condition: ");
+		terminateCondition.setEditable(false);
+		JTextField userTerminateCondition = new JTextField(5);
+		JTextArea elitismRate = new JTextArea("Elitism Rate: ");
+		elitismRate.setEditable(false);
+		JTextField userElitismRate = new JTextField(5);
 		JButton start = new JButton("Start");
-		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations));
+		start.addActionListener(new StartListener(this, component, userBitStringLength, userPopSize, userGenerations, userElitismRate));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition));
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
 		panel.add(mutationRate);
@@ -64,6 +70,10 @@ public class EvolutionMain {
 		panel.add(userPopSize);
 		panel.add(generations);
 		panel.add(userGenerations);
+		panel.add(terminateCondition);
+		panel.add(userTerminateCondition);
+		panel.add(elitismRate);
+		panel.add(userElitismRate);
 		panel.add(start);
 		frame.add(panel, BorderLayout.SOUTH);
 		frame.add(component, BorderLayout.CENTER);

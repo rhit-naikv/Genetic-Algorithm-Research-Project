@@ -16,13 +16,15 @@ public class StartListener implements ActionListener {
 	private JTextField bitStringLength;
 	private JTextField popSize;
 	private JTextField generations;
+	private JTextField elitismRate;
 
-	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations) {
+	public StartListener(EvolutionMain main, EvolutionComponent component, JTextField bitStringLength, JTextField popSize, JTextField generations, JTextField elitismRate) {
 		this.main = main;
 		this.component = component;
 		this.bitStringLength = bitStringLength;
 		this.popSize = popSize;
 		this.generations = generations;
+		this.elitismRate = elitismRate;
 
 	}
 
@@ -33,9 +35,9 @@ public class StartListener implements ActionListener {
 			this.component.clear();
 		}
 		if (this.component.getWeakest().size()==0) {
-			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty()) {
+			if (!this.bitStringLength.getText().isEmpty() && !this.popSize.getText().isEmpty() && !this.elitismRate.getText().isEmpty()) {
 				
-				this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText())));
+				this.main.setPop(new Population(Integer.parseInt(this.popSize.getText()), Integer.parseInt(this.bitStringLength.getText()), Integer.parseInt(this.elitismRate.getText())));
 			}
 			else {
 				this.main.setPop(new Population());

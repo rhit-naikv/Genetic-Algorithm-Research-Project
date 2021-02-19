@@ -28,8 +28,8 @@ public class Population {
 		}
 	}
 
-	public Population(int numChromosomes, int numGenes) {
-		this.elitismRate = 0;
+	public Population(int numChromosomes, int numGenes, int elitismRate) {
+		this.elitismRate = elitismRate;
 		for (int i = 0; i < numChromosomes; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
 			for (int j = 0; j < numGenes; j++) {

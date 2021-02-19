@@ -21,16 +21,17 @@ public class TimerListener implements ActionListener {
 	private int counter;
 	private JFrame frame;
 	private JPanel panel;
-	private int stopValue;
+	private JTextField stopValue;
 
 	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame,
-			JPanel panel) {
+			JPanel panel, JTextField stopValue) {
 		this.counter = 0;
 		this.main = main;
 		this.c = c;
 		this.mutationRate = mutationRate;
 		this.frame = frame;
 		this.panel = panel;
+		this.stopValue = stopValue;
 
 	}
 
@@ -64,15 +65,17 @@ public class TimerListener implements ActionListener {
 							.FitnessValue(),
 					this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
 							.FitnessValue());
-			counter++;
 			this.main.setGenerations(this.main.getGenerations() - 1);
-
+			if (this.stopValue.getText().isEmpty()) {
+				if(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue()>=100) {
+					this.main.setGenerations(0);
+				}
+			}
+			else if (this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue() >= Integer.parseInt(this.stopValue.getText())) {
+				this.main.setGenerations(0);
+			}
 		}
 		c.repaint();
-		if (this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
-				.FitnessValue() >= this.stopValue) {
-			this.main.setGenerations(0);
-		}
 	}
 
 }

@@ -51,7 +51,8 @@ public class Chromosome implements Comparable<Chromosome> {
 		}
 		this.genes = genes1;
 	}
-
+	
+	
 	public int FitnessValue() {
 		int counter = 0;
 		for (Character gene : genes) {
@@ -61,8 +62,11 @@ public class Chromosome implements Comparable<Chromosome> {
 		}
 		return counter;
 	}
+
 	
-	public int fitnessTarget(Chromosome chromosome) {
+	
+	public int fitnessTarget() throws FileNotFoundException {
+		Chromosome chromosome = new Chromosome("creeperawman.txt");
 		int counter = 0;
 		for (int i = 0; i < this.genes.size(); i++) {
 			if (this.genes.get(i)==chromosome.getGenes().get(i)) {
