@@ -19,12 +19,16 @@ import java.util.HashSet;
  */
 public class Population {
 
+	//added instance variables
 	private int elitismRate;
 	private int fitnessSelect;
 	private boolean crossover;
 	private boolean roulette;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
 
+	/**
+	 * added constructor for population
+	 */
 	public Population() {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
@@ -43,6 +47,15 @@ public class Population {
 		}
 	}
 
+	/**
+	 * another constructor for population
+	 * @param numChromosomes
+	 * @param numGenes
+	 * @param elitismRate
+	 * @param fitnessSelect
+	 * @param crossover
+	 * @param roulette
+	 */
 	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover,
 			boolean roulette) {
 		this.roulette = roulette;
@@ -62,6 +75,9 @@ public class Population {
 		}
 	}
 
+	/**
+	 * added sorting method
+	 */
 	public void fitnessSort() {
 		Comparator<Chromosome> rankOnes = new Comparator<Chromosome>() {
 			public int compare(Chromosome c1, Chromosome c2) {
@@ -94,6 +110,11 @@ public class Population {
 
 	}
 
+	/**
+	 * this is our evolutionary loop
+	 * @param mutationRate
+	 * @throws FileNotFoundException
+	 */
 	public void evolutionLoop(int mutationRate) throws FileNotFoundException {
 		fitnessSort();
 		int startingSize = this.chromosomes.size();
@@ -148,6 +169,12 @@ public class Population {
 		}
 	}
 
+	/**
+	 * created roulette wheel selection method
+	 * @param startingSize
+	 * @param x
+	 * @return
+	 */
 	public int rouletteResult(int startingSize, ArrayList<Chromosome> x) {
 		double total = 0;
 		double[] fitness = new double[startingSize];
@@ -185,6 +212,12 @@ public class Population {
 		return startingSize - 1;
 	}
 
+	/**
+	 * created method for crossover
+	 * @param chromosome1
+	 * @param chromosome2
+	 * @return
+	 */
 	public Chromosome crossoverResult(int chromosome1, int chromosome2) {
 		Chromosome c;
 		ArrayList<Character> newGenes = new ArrayList<>();
@@ -200,6 +233,10 @@ public class Population {
 		return c;
 	}
 
+	/**
+	 * created method for hamming distance
+	 * @return
+	 */
 	public int getHammingDistance() {
 		double averageHammingDistance = 0;
 		for (int i = 0; i < this.chromosomes.size(); i++) {
@@ -220,14 +257,27 @@ public class Population {
 		return (int) averageHammingDistance / this.chromosomes.size();
 	}
 
+	/**
+	 * gets the chromosomes arraylist
+	 * @return
+	 */
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
 	}
 	
+	/**
+	 * sets the selection method
+	 * @param select
+	 */
 	public void setSelection(boolean select) {
 		this.roulette = select;
 	}
 
+	/**
+	 * draws the population
+	 * @param g2
+	 * @throws FileNotFoundException
+	 */
 	public void drawOn(Graphics2D g2) throws FileNotFoundException {
 		fitnessSort();
 		for (int i = 0; i < this.chromosomes.size(); i++) {
@@ -238,6 +288,10 @@ public class Population {
 		}
 	}
 
+	/**
+	 * sets the fitness function
+	 * @param fitnessSelect2
+	 */
 	public void setFitnessSelct(int fitnessSelect2) {
 		this.fitnessSelect = fitnessSelect2;
 		

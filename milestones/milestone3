@@ -1,2 +1,6 @@
-milestone3 progress:
+milestone3 progress: 
+added elitism, crossover, and terminate condition
+added visualization of fittest
+added diversity via hamming distance
+added visualization to populaiton
 

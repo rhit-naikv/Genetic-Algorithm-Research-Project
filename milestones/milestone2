@@ -1,2 +1,6 @@
-milestone2 progress:
-
+milestone2 progress: 
+able to generate a random population
+have three fitness functions
+created evolutionary loop
+GUI for evolution created
+roulette wheel selection added
