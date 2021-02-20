@@ -131,7 +131,7 @@ public class TimerListener implements ActionListener {
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
 								.FitnessValue(fitnessSelect),this.main.getPop().getHammingDistance());
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block 
 				e1.printStackTrace();
 			}
 			
