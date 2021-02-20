@@ -98,15 +98,19 @@ public class Population {
 		fitnessSort();
 		int startingSize = this.chromosomes.size();
 		Chromosome c;
+		ArrayList<Chromosome> x = new ArrayList<>();
+		for(int i = 0; i < startingSize; i ++) {
+			x.add(this.chromosomes.get(i));
+		}
 		if (roulette) { // Roulette code
 			int clones = (elitismRate * startingSize) / 100;
 			for (int i = 0; i < startingSize - clones; i++) {
 				if (crossover) {
-					int chromosome1 = rouletteResult(startingSize);
-					int chromosome2 = rouletteResult(startingSize);
+					int chromosome1 = rouletteResult(startingSize,x);
+					int chromosome2 = rouletteResult(startingSize,x);
 					c = crossoverResult(chromosome1, chromosome2);
 				} else {
-					c = new Chromosome(chromosomes.get(rouletteResult(startingSize)).getGenes());
+					c = new Chromosome(chromosomes.get(rouletteResult(startingSize,x)).getGenes());
 				}
 				c.mutate(mutationRate);
 				chromosomes.add(c);
@@ -144,13 +148,13 @@ public class Population {
 		}
 	}
 
-	public int rouletteResult(int startingSize) {
+	public int rouletteResult(int startingSize, ArrayList<Chromosome> x) {
 		double total = 0;
-		int[] fitness = new int[100];
+		double[] fitness = new double[startingSize];
 		HashMap<Chromosome, Double> probabilities = new HashMap<>();
 		for (int i = 0; i < startingSize; i++) {
 			try {
-				fitness[i] = this.chromosomes.get(i).FitnessValue(this.fitnessSelect);
+				fitness[i] = x.get(i).FitnessValue(this.fitnessSelect);
 				total += fitness[i];
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -162,19 +166,19 @@ public class Population {
 			double prob = 0;
 			prob = fitness[i] / total;
 			if (probabilities.isEmpty()) {
-				probabilities.put(this.chromosomes.get(i), prob);
+				probabilities.put(x.get(i), prob);
 			} else {
-				probabilities.put(this.chromosomes.get(i), probabilities.get(chromosomes.get(i - 1)) + prob);
+				probabilities.put(x.get(i), probabilities.get(x.get(i - 1)) + prob);
 			}
 		}
 		double finalValue = Math.random();
 		for (int i = 0; i < startingSize; i++) {
 			if (i == 0) {
-				if (probabilities.get(chromosomes.get(0)) > finalValue) {
+				if (probabilities.get(x.get(0)) > finalValue) {
 					return 0;
 				}
-			} else if (probabilities.get(chromosomes.get(i - 1)) < finalValue
-					&& probabilities.get(chromosomes.get(i)) > finalValue) {
+			} else if (probabilities.get(x.get(i - 1)) < finalValue
+					&& probabilities.get(x.get(i)) > finalValue) {
 				return i;
 			}
 		}
