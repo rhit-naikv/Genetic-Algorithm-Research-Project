@@ -27,6 +27,7 @@ public class TimerListener implements ActionListener {
 	private JComboBox<String> cb;
 	private ChromosomeComponent chromosomeC;
 	private PopulationComponent popComponent;
+	private JComboBox<String> userSelect;
 
 	/**
 	 * constuctor for the timer listener
@@ -40,7 +41,7 @@ public class TimerListener implements ActionListener {
 	 * @param chromosomeC
 	 */
 	public TimerListener(EvolutionMain main, EvolutionComponent c, JTextField mutationRate, JFrame frame,
-			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC, PopulationComponent popComponent) {
+			JPanel panel, JTextField stopValue, JComboBox<String> cb, ChromosomeComponent chromosomeC, PopulationComponent popComponent, JComboBox<String> userSelect) {
 		this.counter = 0;
 		this.main = main;
 		this.c = c;
@@ -50,6 +51,8 @@ public class TimerListener implements ActionListener {
 		this.cb = cb;
 		this.chromosomeC = chromosomeC;
 		this.popComponent = popComponent;
+		this.userSelect = userSelect;
+		
 
 	}
 
@@ -71,10 +74,21 @@ public class TimerListener implements ActionListener {
 			fitnessSelect = 2;
 		}
 		
+		boolean selectionBoolean = false;
+		if (this.userSelect.getSelectedItem().equals("Truncation")) {
+			selectionBoolean = false;
+		}
+		else {
+			selectionBoolean = true;
+		}
+		
+		
+		
 		if(this.main.getGenerations() == 0) {
 			this.counter = 0;
 		}
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause() == false) {
+			this.main.getPop().setSelection(selectionBoolean);
 			if (counter >= 250) {
 				this.main.setWidth(this.main.getWidth() + 4);
 				Dimension d = new Dimension(this.main.getWidth(), 450);

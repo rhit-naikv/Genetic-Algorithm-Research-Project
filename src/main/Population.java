@@ -223,6 +223,10 @@ public class Population {
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
 	}
+	
+	public void setSelection(boolean select) {
+		this.roulette = select;
+	}
 
 	public void drawOn(Graphics2D g2) throws FileNotFoundException {
 		fitnessSort();

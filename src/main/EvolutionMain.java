@@ -98,7 +98,7 @@ public class EvolutionMain {
 		JButton start = new JButton("Start");
 		start.addActionListener(new StartListener(this, component, frame, userBitStringLength, userPopSize, userGenerations, userElitismRate, cb, userCrossOver, userSelection));
 
-		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c, popComponent));
+		Timer t = new Timer(DELAY, new TimerListener(this, component, userMutationRate, frame, panel, userTerminateCondition, cb, c, popComponent, userSelection));
 		
 		panel.add(bitStringLength);
 		panel.add(userBitStringLength);
