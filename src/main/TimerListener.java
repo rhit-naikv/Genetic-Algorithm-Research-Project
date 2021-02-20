@@ -86,7 +86,7 @@ public class TimerListener implements ActionListener {
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
 								.FitnessValue(fitnessSelect),
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
-								.FitnessValue(fitnessSelect));
+								.FitnessValue(fitnessSelect), this.main.getPop().getHammingDistance());
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -113,12 +113,15 @@ public class TimerListener implements ActionListener {
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
 								.FitnessValue(fitnessSelect),
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
-								.FitnessValue(fitnessSelect));
+								.FitnessValue(fitnessSelect),this.main.getPop().getHammingDistance());
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 			this.main.setGenerations(this.main.getGenerations() - 1);
+			
+
 			if (this.stopValue.getText().isEmpty()) {
 				try {
 					if(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(fitnessSelect)>=100) {
@@ -137,8 +140,9 @@ public class TimerListener implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
-				this.popComponent.setPop(this.main.getPop());
+			this.popComponent.setPop(this.main.getPop());
+			this.main.getPop().fitnessSort();
+			this.chromosomeC.setChromosome(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size()-1));
 
 			this.chromosomeC.repaint();
 			this.popComponent.repaint();

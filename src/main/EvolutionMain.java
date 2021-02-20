@@ -44,7 +44,7 @@ public class EvolutionMain {
 		JPanel panel = new JPanel();
 		EvolutionComponent component = new EvolutionComponent();
 		component.setPreferredSize(new Dimension(this.width, this.height));		
-		frame.setPreferredSize(new Dimension(this.width, this.height+80));	
+		frame.setPreferredSize(new Dimension(this.width, this.height+120));	
 		panel.setPreferredSize(new Dimension(this.width, 100));
 		
 		ChromosomeComponent c = new ChromosomeComponent();
@@ -82,14 +82,17 @@ public class EvolutionMain {
 		String[] fitnessChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's"};
 		JTextArea comboBox = new JTextArea("Function: ");
 	    JComboBox<String> cb = new JComboBox<String>(fitnessChoices);
+	    comboBox.setEditable(false);
 	    
 	    JTextArea crossOver = new JTextArea("Crossover? ");
-	    String[] crossOverChoices = {"YES", "NO"};
+	    String[] crossOverChoices = {"NO", "YES"};
 	    JComboBox<String> userCrossOver = new JComboBox<String>(crossOverChoices);
+	    crossOver.setEditable(false);
 	    
 	    JTextArea selection = new JTextArea("Selection: ");
 	    String[] selectionChoices = {"Truncation","Roulette Wheel"};
 	    JComboBox<String> userSelection = new JComboBox<String>(selectionChoices);
+	    selection.setEditable(false);
 	    
 	        
 		JButton start = new JButton("Start");

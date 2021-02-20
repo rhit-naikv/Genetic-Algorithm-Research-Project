@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /*
  * A population of chromosomes that can be sorted based on fitness and create the next generation 
@@ -23,6 +24,7 @@ public class Population {
 	private boolean crossover;
 	private boolean roulette;
 	private ArrayList<Chromosome> chromosomes = new ArrayList<>();
+
 	public Population() {
 		this.elitismRate = 0;
 		this.fitnessSelect = 0;
@@ -41,7 +43,8 @@ public class Population {
 		}
 	}
 
-	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover, boolean roulette) {
+	public Population(int numChromosomes, int numGenes, int elitismRate, int fitnessSelect, boolean crossover,
+			boolean roulette) {
 		this.roulette = roulette;
 		this.elitismRate = elitismRate;
 		this.fitnessSelect = fitnessSelect;
@@ -95,7 +98,6 @@ public class Population {
 		fitnessSort();
 		int startingSize = this.chromosomes.size();
 		Chromosome c;
-		HashMap<Chromosome, Integer> indexes = new HashMap<>();
 		if (roulette) { // Roulette code
 			int clones = (elitismRate * startingSize) / 100;
 			for (int i = 0; i < startingSize - clones; i++) {
@@ -109,8 +111,8 @@ public class Population {
 				c.mutate(mutationRate);
 				chromosomes.add(c);
 			}
-			for(int i = 0; i < clones; i ++) {
-				c = new Chromosome(chromosomes.get(99-i).getGenes());
+			for (int i = 0; i < clones; i++) {
+				c = new Chromosome(chromosomes.get(99 - i).getGenes());
 				c.mutate(mutationRate);
 				chromosomes.add(c);
 			}
@@ -118,7 +120,7 @@ public class Population {
 				chromosomes.remove(0);
 			}
 
-		} else {// Truncation code 
+		} else {// Truncation code
 			for (int i = 0; i < startingSize / 2; i++) {
 				chromosomes.remove(0);
 			}
@@ -144,23 +146,21 @@ public class Population {
 
 	public int rouletteResult(int startingSize) {
 		double total = 0;
-		int sumProb = 0;
+		int[] fitness = new int[100];
 		HashMap<Chromosome, Double> probabilities = new HashMap<>();
 		for (int i = 0; i < startingSize; i++) {
 			try {
-				total += this.chromosomes.get(i).FitnessValue(this.fitnessSelect);
+				fitness[i] = this.chromosomes.get(i).FitnessValue(this.fitnessSelect);
+				total += fitness[i];
 			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
 		for (int i = 0; i < startingSize; i++) {
 			double prob = 0;
-			try {
-				prob = this.chromosomes.get(i).FitnessValue(this.fitnessSelect) / total;
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+			prob = fitness[i] / total;
 			if (probabilities.isEmpty()) {
 				probabilities.put(this.chromosomes.get(i), prob);
 			} else {
@@ -178,7 +178,7 @@ public class Population {
 				return i;
 			}
 		}
-		return startingSize-1;
+		return startingSize - 1;
 	}
 
 	public Chromosome crossoverResult(int chromosome1, int chromosome2) {
@@ -196,16 +196,37 @@ public class Population {
 		return c;
 	}
 
+	public int getHammingDistance() {
+		double averageHammingDistance = 0;
+		for (int i = 0; i < this.chromosomes.size(); i++) {
+			double hammingDistance = 0;
+			for (int j = 0; j < this.chromosomes.size(); j++) {
+				double counter = 0;
+				if (i != j) {
+					for (int k = 0; k < this.chromosomes.get(i).getGenes().size(); k++) {
+						if (this.chromosomes.get(i).getGenes().get(k) != this.chromosomes.get(j).getGenes().get(k)) {
+							counter++;
+						}
+					}
+					hammingDistance += counter / this.chromosomes.get(i).getGenes().size();
+				}
+			}
+			averageHammingDistance += hammingDistance;
+		}
+		return (int) averageHammingDistance / this.chromosomes.size();
+	}
+
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
 	}
-	
+
 	public void drawOn(Graphics2D g2) throws FileNotFoundException {
 		fitnessSort();
 		for (int i = 0; i < this.chromosomes.size(); i++) {
 			g2.setColor(Color.GREEN);
 			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(5*i, 100-this.chromosomes.get(i).FitnessValue(this.fitnessSelect), 5*i, 100-this.chromosomes.get(i).FitnessValue(this.fitnessSelect));
+			g2.drawLine(5 * i, 110 - this.chromosomes.get(i).FitnessValue(this.fitnessSelect), 5 * i,
+					110 - this.chromosomes.get(i).FitnessValue(this.fitnessSelect));
 		}
 	}
 
