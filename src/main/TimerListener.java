@@ -122,6 +122,7 @@ public class TimerListener implements ActionListener {
 					e1.printStackTrace();
 				}
 			}
+			this.main.getPop().fitnessSort();
 			try {
 				this.c.addEntry(this.main.getPop().getChromosomes().get(0).FitnessValue(fitnessSelect),
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
