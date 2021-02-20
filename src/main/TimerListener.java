@@ -89,6 +89,7 @@ public class TimerListener implements ActionListener {
 		}
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause() == false) {
 			this.main.getPop().setSelection(selectionBoolean);
+			this.main.getPop().setFitnessSelct(fitnessSelect);
 			if (counter >= 250) {
 				this.main.setWidth(this.main.getWidth() + 4);
 				Dimension d = new Dimension(this.main.getWidth(), 450);

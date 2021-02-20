@@ -238,4 +238,9 @@ public class Population {
 		}
 	}
 
+	public void setFitnessSelct(int fitnessSelect2) {
+		this.fitnessSelect = fitnessSelect2;
+		
+	}
+
 }
