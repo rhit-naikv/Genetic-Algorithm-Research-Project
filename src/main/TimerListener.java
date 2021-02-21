@@ -84,7 +84,7 @@ public class TimerListener implements ActionListener {
 		
 		
 		
-		if(this.main.getGenerations() == 0) {
+		if(this.main.getGenerations() <= 0) {
 			this.counter = 0;
 		}
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause() == false) {
@@ -135,7 +135,7 @@ public class TimerListener implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			this.main.setGenerations(this.main.getGenerations() - 1);
+			
 			
 
 			if (this.stopValue.getText().isEmpty()) {
@@ -162,6 +162,7 @@ public class TimerListener implements ActionListener {
 
 			this.chromosomeC.repaint();
 			this.popComponent.repaint();
+			this.main.setGenerations(this.main.getGenerations() - 1);
 		}
 		c.repaint();
 	}
