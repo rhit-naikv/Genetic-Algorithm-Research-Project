@@ -16,7 +16,7 @@ import javax.swing.JComponent;
  */
 public class EvolutionComponent extends JComponent {
 
-	//define arraylists for certain chromosomes
+	//define arraylists for certain chromosomes 
 	private ArrayList<Integer> weakest = new ArrayList<>();
 	private ArrayList<Integer> strongest = new ArrayList<>();
 	private ArrayList<Integer> average = new ArrayList<>();

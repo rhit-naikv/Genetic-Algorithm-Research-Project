@@ -263,7 +263,7 @@ public class Population {
 	 */
 	public ArrayList<Chromosome> getChromosomes() {
 		return this.chromosomes;
-	}
+	} 
 	
 	/**
 	 * sets the selection method
