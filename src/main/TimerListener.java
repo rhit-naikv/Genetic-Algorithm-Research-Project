@@ -54,9 +54,9 @@ public class TimerListener implements ActionListener {
 		this.userSelect = userSelect;
 		
 
-	}
+	} 
 
-	/**
+	/** 
 	 * response to event. Keeps track of the progress of the evolution
 	 */
 	@Override
