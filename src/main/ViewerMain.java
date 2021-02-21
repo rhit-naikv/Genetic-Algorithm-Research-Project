@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  * 
  * @author Vidhu Naik and William Chong 
  *
- */
+ */ 
 public class ViewerMain {
 	private String fileName; // start with 20.txt
 	private Chromosome chromosome;
