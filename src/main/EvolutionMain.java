@@ -79,7 +79,7 @@ public class EvolutionMain {
 		elitismRate.setEditable(false);
 		JTextField userElitismRate = new JTextField(5);
 		
-		String[] fitnessChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's"};
+		String[] fitnessChoices = {"Check for 1's", "Check for target Chromosome", "Check consecutive 0's", "Experiment from Paper"};
 		JTextArea comboBox = new JTextArea("Function: ");
 	    JComboBox<String> cb = new JComboBox<String>(fitnessChoices);
 	    comboBox.setEditable(false);

@@ -21,6 +21,9 @@ public class EvolutionComponent extends JComponent {
 	private ArrayList<Integer> strongest = new ArrayList<>();
 	private ArrayList<Integer> average = new ArrayList<>();
 	private ArrayList<Integer> hamming = new ArrayList<>();
+	private ArrayList<Integer> ones = new ArrayList<>();
+	private ArrayList<Integer> zeroes = new ArrayList<>();
+	private ArrayList<Integer> questions = new ArrayList<>();
 
 	/**
 	 * adds an entry to the arrayLists
@@ -28,11 +31,14 @@ public class EvolutionComponent extends JComponent {
 	 * @param strongest
 	 * @param average
 	 */
-	public void addEntry(int weakest, int strongest, int average, int hammingDistance) {
+	public void addEntry(int weakest, int strongest, int average, int hammingDistance, int one, int zero, int question) {
 		this.weakest.add(weakest);
 		this.strongest.add(strongest);
 		this.average.add(average);
 		this.hamming.add(hammingDistance);
+		this.ones.add(one);
+		this.zeroes.add(zero);
+		this.questions.add(question);
 	}
 
 	/**
@@ -43,6 +49,9 @@ public class EvolutionComponent extends JComponent {
 		this.strongest.clear();
 		this.average.clear();
 		this.hamming.clear();
+		this.ones.clear();
+		this.zeroes.clear();
+		this.questions.clear();
 	}
 	
 	/**
@@ -64,8 +73,8 @@ public class EvolutionComponent extends JComponent {
 		if (!this.weakest.isEmpty()) {
 			for (int i = 0; i < this.weakest.size() - 1; i++) {
 				g2.setColor(Color.BLACK);
-				g2.drawLine(25, 250, 5000, 250);
-				g2.drawLine(25, 50, 5000, 50);
+				g2.drawLine(25, 255, 5000, 255);
+				g2.drawLine(25, 45, 5000, 45);
 				g2.drawLine(25, 50, 25, 500);
 				for (int j = 0; j <= 10; j++) {
 					String s = "" + j * 10;
@@ -76,23 +85,43 @@ public class EvolutionComponent extends JComponent {
 					g2.drawString(s, 25 + j * 100, 265);
 				}
 				g2.setStroke(new BasicStroke(2));
+				
 				g2.setColor(Color.RED);
 				g2.drawString("Weakest", 10, 10);
 				g2.drawLine(25 + (2 * i), 250 - (2 * this.weakest.get(i)), 25 + (2 * (i + 1)),
 						250 - (2 * this.weakest.get(i + 1)));
 				
-				g2.setColor(Color.BLUE);
-				g2.drawString("Average", 130, 10);
-				g2.drawLine(25 + (2 * i), 250 - (2 * this.average.get(i)), 25 + (2 * (i + 1)),
-						250 - (2 * this.average.get(i + 1)));
 				g2.setColor(Color.GREEN);
 				g2.drawString("Strongest", 70, 10);
 				g2.drawLine(25 + (2 * i), 250 - (2 * this.strongest.get(i)), 25 + (2 * (i + 1)),
 						250 - (2 * this.strongest.get(i + 1)));
+				
+				g2.setColor(Color.BLUE);
+				g2.drawString("Average", 130, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2 * this.average.get(i)), 25 + (2 * (i + 1)),
+						250 - (2 * this.average.get(i + 1)));
+				
+				
+				
 				g2.setColor(Color.ORANGE);
 				g2.drawString("HammingDistance", 190, 10);
 				g2.drawLine(25 + (2 * i), 250 - (2*this.hamming.get(i)), 25 + (2 * (i + 1)),
 						250 - (2*this.hamming.get(i + 1)));
+				
+				g2.setColor(Color.MAGENTA);
+				g2.drawString("1's", 250, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2*this.ones.get(i)), 25 + (2 * (i + 1)),
+						250 - (2*this.ones.get(i + 1)));
+				
+				g2.setColor(Color.CYAN);
+				g2.drawString("0's", 310, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2*this.zeroes.get(i)), 25 + (2 * (i + 1)),
+						250 - (2*this.zeroes.get(i + 1)));
+				
+				g2.setColor(Color.BLACK);
+				g2.drawString("?'s", 370, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2*this.questions.get(i)), 25 + (2 * (i + 1)),
+						250 - (2*this.questions.get(i + 1)));
 
 			}
 		}

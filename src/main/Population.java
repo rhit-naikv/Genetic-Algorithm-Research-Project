@@ -1,16 +1,14 @@
 package main;
 
+
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /*
  * A population of chromosomes that can be sorted based on fitness and create the next generation 
@@ -64,12 +62,29 @@ public class Population {
 		this.crossover = crossover;
 		for (int i = 0; i < numChromosomes; i++) {
 			ArrayList<Character> genes = new ArrayList<>();
-			for (int j = 0; j < numGenes; j++) {
-				if (Math.random() > 0.5) {
-					genes.add('1');
-				} else
-					genes.add('0');
-
+			if (fitnessSelect != 3) {
+				for (int j = 0; j < numGenes; j++) {
+					if (Math.random() > 0.5) {
+						genes.add('1');
+					} else
+						genes.add('0');
+				}
+			}
+			else {
+				for (int j = 0; j < numGenes; j++) {
+					if (Math.random() > 0.5) {
+						genes.add('?');
+					}
+					else {
+						if (Math.random() > 0.5) {
+							genes.add('1');
+						}
+						else {
+							genes.add('0');
+						}
+					}
+					System.out.println(genes.get(j));
+				}
 			}
 			this.chromosomes.add(new Chromosome(genes));
 		}
@@ -100,12 +115,19 @@ public class Population {
 				return c1.fitnessAlternate() - c2.fitnessAlternate();
 			}
 		};
+		Comparator<Chromosome> rankExperiment = new Comparator<Chromosome>() {
+			public int compare(Chromosome c1, Chromosome c2) {
+				return (int) (c1.fitnessExperiment() - c2.fitnessExperiment());
+			}
+		};
 		if (this.fitnessSelect == 0) {
 			Collections.sort(this.chromosomes, rankOnes);
 		} else if (this.fitnessSelect == 1) {
 			Collections.sort(this.chromosomes, rankTarget);
-		} else {
+		} else  if (this.fitnessSelect == 2){
 			Collections.sort(this.chromosomes, rankAlternate);
+		} else {
+			Collections.sort(this.chromosomes, rankExperiment);
 		}
 
 	}

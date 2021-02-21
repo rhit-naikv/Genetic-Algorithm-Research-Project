@@ -66,8 +66,11 @@ public class StartListener implements ActionListener {
 		else if (this.cb.getSelectedItem().equals("Check for target Chromosome")) {
 			fitnessSelect = 1;
 		}
-		else {
+		else if (this.cb.getSelectedItem().equals("Check consecutive 0's")) {
 			fitnessSelect = 2;
+		}
+		else {
+			fitnessSelect = 3;
 		}
 		if (this.main.getGenerations() == -1) {
 			this.component.clear();

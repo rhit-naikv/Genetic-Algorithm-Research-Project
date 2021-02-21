@@ -70,8 +70,11 @@ public class TimerListener implements ActionListener {
 		else if (this.cb.getSelectedItem().equals("Check for target Chromosome")) {
 			fitnessSelect = 1;
 		}
-		else {
+		else if (this.cb.getSelectedItem().equals("Check consecutive 0's")) {
 			fitnessSelect = 2;
+		}
+		else {
+			fitnessSelect = 3;
 		}
 		
 		boolean selectionBoolean = false;
@@ -101,7 +104,7 @@ public class TimerListener implements ActionListener {
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
 								.FitnessValue(fitnessSelect),
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
-								.FitnessValue(fitnessSelect), this.main.getPop().getHammingDistance());
+								.FitnessValue(fitnessSelect), this.main.getPop().getHammingDistance(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getOnes(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getZeroes(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getQuestions());
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -129,7 +132,7 @@ public class TimerListener implements ActionListener {
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1)
 								.FitnessValue(fitnessSelect),
 						this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() / 2)
-								.FitnessValue(fitnessSelect),this.main.getPop().getHammingDistance());
+								.FitnessValue(fitnessSelect), this.main.getPop().getHammingDistance(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getOnes(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getZeroes(), this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).getQuestions());
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block 
 				e1.printStackTrace();

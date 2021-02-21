@@ -20,6 +20,7 @@ public class Chromosome {
 	private ArrayList<Character> genes;
 	private ArrayList<Rectangle2D.Double> geneImage;
 	private String chromosomeFileName;
+	private double experimentFitness;
 
 	/**
 	 * constructs the chromosome when given a file name
@@ -27,7 +28,7 @@ public class Chromosome {
 	 * @throws FileNotFoundException
 	 */
 	public Chromosome(String chromosomeFileName) throws FileNotFoundException {
-
+		this.experimentFitness = -1;
 		this.chromosomeFileName = chromosomeFileName;
 		this.genes = new ArrayList<>();
 		this.geneImage = new ArrayList<>();
@@ -55,6 +56,7 @@ public class Chromosome {
 	 * @param genes
 	 */
 	public Chromosome(ArrayList<Character> genes) {
+		this.experimentFitness = -1;
 		ArrayList<Character> genes1 = new ArrayList<>();
 		this.geneImage = new ArrayList<>();
 		for (int i = 0; i < genes.size(); i++) {
@@ -123,6 +125,44 @@ public class Chromosome {
 		return max;
 	}
 	
+	public double fitnessExperiment() {
+		ArrayList<Character> genesCopy = new ArrayList<>();
+		for (int i = 0; i < this.genes.size(); i++) {
+			genesCopy.add(this.genes.get(i));
+		}
+		double dayThousandReached = 0;
+		for (int i = 0; i < 1000; i++) {
+			int counter = 0;
+			for (int j = 0; j < this.genes.size(); j++) {
+				if (this.genes.get(j) == '?') {
+					if (Math.random() > 0.5) {
+						genesCopy.set(j, '1');
+					}
+					else {
+						genesCopy.set(j, '0');
+					}
+				}
+				if (genesCopy.get(j) == '1') {
+					counter++;
+				}
+			}
+			
+			if (counter == this.genes.size()) {
+				dayThousandReached = i;
+				break;
+			}
+			else {
+				dayThousandReached = 1000;
+			}
+		}
+		if(this.experimentFitness == -1) {
+			this.experimentFitness = (int)(5*(1.0 + (19.0*(1000.0 - dayThousandReached))/1000.0));
+		}
+		System.out.println(this.experimentFitness);
+		return this.experimentFitness;
+		
+	}
+	
 	/**
 	 * returns the fitness value of the chromosome based on what fitness function the user wants to use.
 	 * @param fitnessSelect
@@ -136,8 +176,11 @@ public class Chromosome {
 		else if (fitnessSelect == 1) {
 			return fitnessTarget();
 		}
-		else {
+		else if (fitnessSelect == 2) {
 			return fitnessAlternate();
+		}
+		else {
+			return (int) fitnessExperiment();
 		}
 	}
 
@@ -164,6 +207,36 @@ public class Chromosome {
 	public ArrayList<Character> getGenes() {
 		return this.genes;
 	}
+	
+	public int getOnes() {
+		int counter = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (this.genes.get(i) == '1') {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	public int getZeroes() {
+		int counter = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (this.genes.get(i) == '0') {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	public int getQuestions() {
+		int counter = 0;
+		for (int i = 0; i < this.genes.size(); i++) {
+			if (this.genes.get(i) == '?') {
+				counter++;
+			}
+		}
+		return counter;
+	}
 
 	/**
 	 * gets the gene image of the chromosome (the square sizes)
@@ -182,7 +255,11 @@ public class Chromosome {
 		for (int i = 0; i < this.genes.size(); i++) {
 			if (this.genes.get(i) == '0') {
 				g2.setColor(Color.BLACK);
-			} else {
+			}
+			else if (this.genes.get(i) == '?') {
+				g2.setColor(Color.ORANGE);
+			}
+			else {
 				g2.setColor(Color.GREEN);
 			}
 			g2.fill(this.geneImage.get(i));
