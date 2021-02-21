@@ -158,7 +158,6 @@ public class Chromosome {
 		if(this.experimentFitness == -1) {
 			this.experimentFitness = (int)(5*(1.0 + (19.0*(1000.0 - dayThousandReached))/1000.0));
 		}
-		System.out.println(this.experimentFitness);
 		return this.experimentFitness;
 		
 	}
