@@ -56,7 +56,7 @@ public class TimerListener implements ActionListener {
 
 	}
 
-	/**
+	/** 
 	 * response to event. Keeps track of the progress of the evolution
 	 */
 	@Override
