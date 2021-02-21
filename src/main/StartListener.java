@@ -95,7 +95,7 @@ public class StartListener implements ActionListener {
 				if (bitStringLengthInt > 100) {
 					bitStringLengthInt = 100;
 				}
-				
+				 
 			}
 			else {
 				bitStringLengthInt = 100;

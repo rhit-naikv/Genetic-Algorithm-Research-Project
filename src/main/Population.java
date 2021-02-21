@@ -250,7 +250,7 @@ public class Population {
 						}
 					}
 					hammingDistance += counter / this.chromosomes.get(i).getGenes().size();
-				}
+				} 
 			}
 			averageHammingDistance += hammingDistance;
 		}
