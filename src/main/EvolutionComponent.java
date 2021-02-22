@@ -86,27 +86,10 @@ public class EvolutionComponent extends JComponent {
 				}
 				g2.setStroke(new BasicStroke(2));
 				
-				g2.setColor(Color.RED);
-				g2.drawString("Weakest", 10, 10);
-				g2.drawLine(25 + (2 * i), 250 - (2 * this.weakest.get(i)), 25 + (2 * (i + 1)),
-						250 - (2 * this.weakest.get(i + 1)));
-				
-				g2.setColor(Color.GREEN);
-				g2.drawString("Strongest", 70, 10);
-				g2.drawLine(25 + (2 * i), 250 - (2 * this.strongest.get(i)), 25 + (2 * (i + 1)),
-						250 - (2 * this.strongest.get(i + 1)));
-				
-				g2.setColor(Color.BLUE);
-				g2.drawString("Average", 130, 10);
-				g2.drawLine(25 + (2 * i), 250 - (2 * this.average.get(i)), 25 + (2 * (i + 1)),
-						250 - (2 * this.average.get(i + 1)));
 				
 				
 				
-				g2.setColor(Color.ORANGE);
-				g2.drawString("HammingDistance", 190, 10);
-				g2.drawLine(25 + (2 * i), 250 - (2*this.hamming.get(i)), 25 + (2 * (i + 1)),
-						250 - (2*this.hamming.get(i + 1)));
+				
 				
 				g2.setColor(Color.MAGENTA);
 				g2.drawString("1's", 250, 10);
@@ -122,6 +105,26 @@ public class EvolutionComponent extends JComponent {
 				g2.drawString("?'s", 370, 10);
 				g2.drawLine(25 + (2 * i), 250 - (2*this.questions.get(i)), 25 + (2 * (i + 1)),
 						250 - (2*this.questions.get(i + 1)));
+				
+				g2.setColor(Color.RED);
+				g2.drawString("Weakest", 10, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2 * this.weakest.get(i)), 25 + (2 * (i + 1)),
+						250 - (2 * this.weakest.get(i + 1)));
+				
+				g2.setColor(Color.GREEN);
+				g2.drawString("Strongest", 70, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2 * this.strongest.get(i)), 25 + (2 * (i + 1)),
+						250 - (2 * this.strongest.get(i + 1)));
+				
+				g2.setColor(Color.BLUE);
+				g2.drawString("Average", 130, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2 * this.average.get(i)), 25 + (2 * (i + 1)),
+						250 - (2 * this.average.get(i + 1)));
+				g2.setColor(Color.ORANGE);
+				g2.drawString("HammingDistance", 190, 10);
+				g2.drawLine(25 + (2 * i), 250 - (2*this.hamming.get(i)), 25 + (2 * (i + 1)),
+						250 - (2*this.hamming.get(i + 1)));
+				
 
 			}
 		}
