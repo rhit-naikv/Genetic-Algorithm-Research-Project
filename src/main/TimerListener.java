@@ -87,7 +87,7 @@ public class TimerListener implements ActionListener {
 		
 		
 		
-		if(this.main.getGenerations() == 0) {
+		if(this.main.getGenerations() <= 0) {
 			this.counter = 0;
 		}
 		if (this.main.getPop() != null && this.main.getGenerations() >= 0 && this.main.getPause() == false) {
@@ -143,8 +143,8 @@ public class TimerListener implements ActionListener {
 
 			if (this.stopValue.getText().isEmpty()) {
 				try {
-					if(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(fitnessSelect)>=100) {
-						this.main.setGenerations(0);
+					if(this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(fitnessSelect)>=101) {
+						this.main.setGenerations(-1);
 					}
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block 
@@ -153,7 +153,7 @@ public class TimerListener implements ActionListener {
 			} else
 				try {
 					if (this.main.getPop().getChromosomes().get(this.main.getPop().getChromosomes().size() - 1).FitnessValue(fitnessSelect) >= Integer.parseInt(this.stopValue.getText())) {
-						this.main.setGenerations(0);
+						this.main.setGenerations(-1);
 					}
 				} catch (NumberFormatException | FileNotFoundException e1) {
 					// TODO Auto-generated catch block
